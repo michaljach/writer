@@ -12,7 +12,7 @@ struct SettingsItemView: View {
     var current: Text?
     
     var body: some View {
-        NavigationLink(destination: EmptyView()) {
+        HStack {
             Text(title)
                 .fontWeight(.medium)
             Spacer()
@@ -22,14 +22,12 @@ struct SettingsItemView: View {
                     .fontWeight(.medium)
                     .foregroundColor(Color.gray)
             }
-
-            Image("arrow_right")
         }
     }
 }
 
 struct SettingsItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsItemView(title: "Preview setting", current: Text("Online"))
+        SettingsItemView(title: "Setting")
     }
 }

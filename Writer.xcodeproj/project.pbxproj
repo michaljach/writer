@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30665F842555805B001BF753 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F832555805B001BF753 /* SettingsItemView.swift */; };
+		30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F832555805B001BF753 /* SettingsNavItemView.swift */; };
+		30665F8C2555B318001BF753 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F8B2555B318001BF753 /* SettingsItemView.swift */; };
 		306AF69825549DEB00C124FC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AF69725549DEB00C124FC /* SettingsView.swift */; };
 		306AF6A42555659100C124FC /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AF6A32555659000C124FC /* HeaderView.swift */; };
 		306D582525514D360074CFD5 /* WriterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D582425514D360074CFD5 /* WriterApp.swift */; };
@@ -48,7 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30665F832555805B001BF753 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
+		30665F832555805B001BF753 /* SettingsNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavItemView.swift; sourceTree = "<group>"; };
+		30665F8B2555B318001BF753 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		306AF69725549DEB00C124FC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		306AF6A32555659000C124FC /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		306D582125514D360074CFD5 /* Writer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Writer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				306AF69725549DEB00C124FC /* SettingsView.swift */,
-				30665F832555805B001BF753 /* SettingsItemView.swift */,
+				30665F832555805B001BF753 /* SettingsNavItemView.swift */,
+				30665F8B2555B318001BF753 /* SettingsItemView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				306D583125514D380074CFD5 /* Writer.xcdatamodeld in Sources */,
 				30A0F0972554501800AC2744 /* MenuItemView.swift in Sources */,
 				30F3776425519500003FAC4F /* ItemView.swift in Sources */,
+				30665F8C2555B318001BF753 /* SettingsItemView.swift in Sources */,
 				306D582E25514D380074CFD5 /* Persistence.swift in Sources */,
 				306D582725514D360074CFD5 /* ListView.swift in Sources */,
 				30F377982551CAF9003FAC4F /* UIFont.swift in Sources */,
@@ -387,7 +391,7 @@
 				30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */,
 				306AF6A42555659100C124FC /* HeaderView.swift in Sources */,
 				30B5B01F25543C83009E301F /* MenuView.swift in Sources */,
-				30665F842555805B001BF753 /* SettingsItemView.swift in Sources */,
+				30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */,
 				30A0CC8A2551705700F42FF7 /* Editor.swift in Sources */,
 				30F377762551AF5D003FAC4F /* ToolbarView.swift in Sources */,
 				30F377922551CA99003FAC4F /* EditorViewProtocols.swift in Sources */,

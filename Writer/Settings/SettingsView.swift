@@ -19,16 +19,22 @@ struct SettingsView: View {
                     LazyVStack(alignment: .leading) {
                         Section(header: HeaderView(title: "Editor")) {
                             VStack(spacing: 0) {
-                                SettingsItemView(title: "Typography", current: nil)
+                                SettingsNavItemView(title: "Typography", current: nil) {
+                                    
+                                }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
                                 
-                                SettingsItemView(title: "Start note with", current: Text("Heading"))
+                                SettingsNavItemView(title: "Start note with", current: Text("Heading")) {
+                                    
+                                }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
-                                SettingsItemView(title: "Default Space", current: Text("All"))
+                                SettingsNavItemView(title: "Default Space", current: Text("All")) {
+                                    
+                                }
                                     .padding()
                             }
                             .background(Color("SelectionColor"))
@@ -37,11 +43,15 @@ struct SettingsView: View {
                         
                         Section(header: HeaderView(title: "Look and feel")) {
                             VStack(spacing: 0) {
-                                SettingsItemView(title: "App Icons", current: nil)
+                                SettingsNavItemView(title: "App Icons", current: nil) {
+                                    
+                                }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
-                                SettingsItemView(title: "Themes", current: Text("Raven"))
+                                SettingsNavItemView(title: "Themes", current: Text("Raven")) {
+                                    
+                                }
                                     .padding()
                             }
                             .background(Color("SelectionColor"))
