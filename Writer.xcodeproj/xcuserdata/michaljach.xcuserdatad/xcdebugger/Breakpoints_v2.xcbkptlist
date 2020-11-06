@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "0937E9A3-D2F7-48F7-8099-94A825921C0C"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36098297-3BC2-4CA1-A87D-D62D3850905D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Writer/Editor/EditorView/EditorViewProtocols.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "getHighlightedText(text:highlightRules:font:color:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA39B5E6-C171-4AA5-A3D2-234DDD047B65"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Writer/Editor/EditorView/EditorView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A6F32EF-40E6-43BD-B845-2DBF8FC3FA8A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Writer/Editor/EditorView/EditorViewProtocols.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getHighlightedText(text:highlightRules:font:color:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6A6F32EF-40E6-43BD-B845-2DBF8FC3FA8A - b8e9b8fe75f28fa5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSTextCheckingResult) -&gt; () in closure #1 (Writer.HighlightRule) -&gt; () in static (extension in Writer):Writer.EditorViewProtocol.getHighlightedText(text: Swift.String, highlightRules: Swift.Array&lt;Writer.HighlightRule&gt;, font: Swift.Optional&lt;__C.UIFont&gt;, color: Swift.Optional&lt;__C.UIColor&gt;) -&gt; __C.NSMutableAttributedString"
+                  moduleName = "Writer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaljach/Sites/Writer/Writer/Editor/EditorView/EditorViewProtocols.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "6A6F32EF-40E6-43BD-B845-2DBF8FC3FA8A - 3234e2b218d9cf7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Writer.TextFormattingRule) -&gt; () in closure #1 (__C.NSTextCheckingResult) -&gt; () in closure #1 (Writer.HighlightRule) -&gt; () in static (extension in Writer):Writer.EditorViewProtocol.getHighlightedText(text: Swift.String, highlightRules: Swift.Array&lt;Writer.HighlightRule&gt;, font: Swift.Optional&lt;__C.UIFont&gt;, color: Swift.Optional&lt;__C.UIColor&gt;) -&gt; __C.NSMutableAttributedString"
+                  moduleName = "Writer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/michaljach/Sites/Writer/Writer/Editor/EditorView/EditorViewProtocols.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "226">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F18654D3-687A-4448-9259-C105CF3D83DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Writer/Editor/EditorView/EditorViewProtocols.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "getHighlightedText(text:highlightRules:font:color:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
