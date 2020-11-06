@@ -12,7 +12,6 @@ struct Editor: View {
     @State private var text: String = ""
     @State private var item: Item?
     
-    
     var body: some View {
         EditorView(text: $text, highlightRules: EditorView.markdown, onTextChange: { text in
             viewContext.performAndWait {

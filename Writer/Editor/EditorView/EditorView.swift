@@ -52,7 +52,8 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         )
         
         let textView = UITextView()
-        
+
+        textView.backgroundColor = UIColor(Color("BackgroundColor"))
         textView.delegate = context.coordinator
         textView.isEditable = true
         textView.isScrollEnabled = true
