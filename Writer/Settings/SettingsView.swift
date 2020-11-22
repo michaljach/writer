@@ -84,6 +84,7 @@ struct SettingsView: View {
                 }, label: {
                     Image("close")
                         .resizable()
+                        .foregroundColor(Color("AccentColor"))
                         .frame(width: 24, height: 24, alignment: .center)
                 }))
                 .navigationBarTitle("Settings", displayMode: .inline)

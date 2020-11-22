@@ -13,7 +13,11 @@ struct MenuView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     Section(header: HeaderView(title: "Notes")) {
-                        MenuItemView(title: "All", iconName: "box", active: true)
+                        NavigationLink(
+                            destination: NotesListView(),
+                            label: {
+                                MenuItemView(title: "All", iconName: "box", active: true)
+                            })
                         MenuItemView(title: "Favourites", iconName: "heart", active: false)
                         MenuItemView(title: "Bin", iconName: "bin", active: false)
                     }
@@ -30,9 +34,8 @@ struct MenuView: View {
             Spacer()
             MenuToolbarView()
         }
-        .background(Color.clear)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .overlay(Rectangle().frame(width: 1, height: nil, alignment: .trailing).foregroundColor(Color("DividerColor")), alignment: .trailing)
+        .background(Color("BackgroundColor"))
+//        .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
     }
 }
 

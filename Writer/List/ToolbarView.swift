@@ -11,7 +11,7 @@ struct ToolbarView: View {
     var body: some View {
         HStack {
             Spacer()
-            NavigationLink(destination: Editor()) {
+            NavigationLink(destination: Editor().navigationBarTitle("", displayMode: .inline)) {
                 Image("add")
                     .resizable()
                     .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -19,7 +19,7 @@ struct ToolbarView: View {
             }
         }
         .padding()
-        .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
+        .background(Color("BackgroundColor"))
     }
 }
 

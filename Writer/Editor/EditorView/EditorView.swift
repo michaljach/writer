@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 public struct EditorView: UIViewRepresentable, EditorViewProtocol {
-
+    
     @Binding var text: String {
         didSet {
             self.onTextChange(text)
@@ -38,7 +38,7 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         self.onCommit = onCommit
         self.onTextChange = onTextChange
     }
-
+    
     public func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -52,7 +52,7 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         )
         
         let textView = UITextView()
-
+        
         textView.backgroundColor = UIColor(Color("BackgroundColor"))
         textView.delegate = context.coordinator
         textView.isEditable = true
@@ -60,41 +60,60 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         textView.textContainerInset = inset
         textView.attributedText = highlightedText
         textView.becomeFirstResponder()
-    
+        textView.selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
+        
         return textView
     }
-
+    
     public func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.isScrollEnabled = false
-        
-        let highlightedText = EditorView.getHighlightedText(
-            text: text,
-            highlightRules: highlightRules,
-            font: font,
-            color: color
-        )
-
-        uiView.attributedText = highlightedText
-        uiView.isScrollEnabled = true
-        uiView.selectedTextRange = context.coordinator.selectedTextRange
+//                uiView.isScrollEnabled = false
+//
+//                let highlightedText = EditorView.getHighlightedText(
+//                    text: text,
+//                    highlightRules: highlightRules,
+//                    font: font,
+//                    color: color
+//                )
+//
+//                uiView.backgroundColor = UIColor(Color("BackgroundColor"))
+//                uiView.selectedTextRange = context.coordinator.selectedTextRange
+//                uiView.attributedText = highlightedText
+//                uiView.isScrollEnabled = true
+//                uiView.selectedTextRange = context.coordinator.selectedTextRange
     }
-
+    
     public class Coordinator: NSObject, UITextViewDelegate {
         var parent: EditorView
         var selectedTextRange: UITextRange? = nil
-
+        
         init(_ markdownEditorView: EditorView) {
             self.parent = markdownEditorView
         }
         
         public func textViewDidChange(_ textView: UITextView) {
-            self.parent.text = textView.text
             selectedTextRange = textView.selectedTextRange
+            let highlightedText = EditorView.getHighlightedText(
+                text: textView.text,
+                highlightRules: parent.highlightRules,
+                font: parent.font,
+                color: parent.color
+            )
+            textView.attributedText = highlightedText
+            textView.selectedTextRange = selectedTextRange
+            parent.onTextChange(textView.text)
         }
         
         public func textViewDidBeginEditing(_ textView: UITextView) {
-            selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
+            let highlightedText = EditorView.getHighlightedText(
+                text: parent.text,
+                highlightRules: parent.highlightRules,
+                font: parent.font,
+                color: parent.color
+            )
             parent.onEditingChanged()
+            selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
+            textView.backgroundColor = UIColor(Color("BackgroundColor"))
+            textView.attributedText = highlightedText
         }
         
         public func textViewDidEndEditing(_ textView: UITextView) {
@@ -109,7 +128,7 @@ extension EditorView {
         new.color = color
         return new
     }
-
+    
     public func defaultFont(_ font: UIFont) -> Self {
         var new = self
         new.font = font

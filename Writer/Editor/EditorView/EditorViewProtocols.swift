@@ -63,11 +63,14 @@ extension EditorViewProtocol {
         let highlightedString = NSMutableAttributedString(string: text)
         let all = NSRange(location: 0, length: text.count)
         
-        let editorFont = UIFont.systemFont(ofSize: 17)
+        let editorFont = UIFont.systemFont(ofSize: 17, weight: .medium)
         let editorTextColor = color ?? UIColor.label
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 6
         
         highlightedString.addAttribute(.font, value: editorFont, range: all)
         highlightedString.addAttribute(.foregroundColor, value: editorTextColor, range: all)
+        highlightedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: all)
         
         highlightRules.forEach { rule in
             let matches = rule.pattern.matches(in: text, options: [], range: all)
@@ -119,16 +122,24 @@ let secondaryBackground = UIColor.secondarySystemBackground
 let lighterColor = UIColor.lightGray
 let textColor = UIColor.label
 
+
 public extension EditorView {
+    static func paragraphStyle() -> NSParagraphStyle {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 12
+        return paragraphStyle
+    }
+    
     static let markdown: Array<HighlightRule> = [
         HighlightRule(pattern: inlineCodeRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
         HighlightRule(pattern: codeBlockRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
         HighlightRule(pattern: headingRegex, formattingRules: [
             TextFormattingRule(fontTraits: headingTraits),
             TextFormattingRule(key: .font, value: UIFont.monospacedSystemFont(ofSize: 21, weight: .bold)),
+            TextFormattingRule(key: .paragraphStyle, value: paragraphStyle())
         ]),
         HighlightRule(pattern: linkOrImageRegex, formattingRule: TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue)),
-        HighlightRule(pattern: boldRegex, formattingRule: TextFormattingRule(fontTraits: boldTraits)),
+        HighlightRule(pattern: boldRegex, formattingRule: TextFormattingRule(key: .font, value: UIFont.systemFont(ofSize: 16, weight: .heavy))),
         HighlightRule(pattern: asteriskEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
         HighlightRule(pattern: underscoreEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
         HighlightRule(pattern: boldEmphasisAsteriskRegex, formattingRule: TextFormattingRule(fontTraits: boldEmphasisTraits)),

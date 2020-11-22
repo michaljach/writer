@@ -16,6 +16,7 @@
 		30665FA02555B778001BF753 /* WriterWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 30665F9C2555B775001BF753 /* WriterWidget.intentdefinition */; };
 		30665FA12555B778001BF753 /* WriterWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 30665F9C2555B775001BF753 /* WriterWidget.intentdefinition */; };
 		30665FA42555B778001BF753 /* WriterWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30665F942555B775001BF753 /* WriterWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30665FAE2555C065001BF753 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665FAD2555C065001BF753 /* SearchBarView.swift */; };
 		306AF69825549DEB00C124FC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AF69725549DEB00C124FC /* SettingsView.swift */; };
 		306AF6A42555659100C124FC /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AF6A32555659000C124FC /* HeaderView.swift */; };
 		306D582525514D360074CFD5 /* WriterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D582425514D360074CFD5 /* WriterApp.swift */; };
@@ -30,6 +31,7 @@
 		30A0F0972554501800AC2744 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A0F0962554501800AC2744 /* MenuItemView.swift */; };
 		30B5B01F25543C83009E301F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B01E25543C83009E301F /* MenuView.swift */; };
 		30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B02625543DC3009E301F /* MenuToolbarView.swift */; };
+		30E545A8255EF4E400E14721 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E545A7255EF4E400E14721 /* NotesListView.swift */; };
 		30F3776425519500003FAC4F /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F3776325519500003FAC4F /* ItemView.swift */; };
 		30F377712551ADF0003FAC4F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F377702551ADF0003FAC4F /* CloudKit.framework */; };
 		30F377762551AF5D003FAC4F /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F377752551AF5D003FAC4F /* ToolbarView.swift */; };
@@ -86,6 +88,7 @@
 		30665F9C2555B775001BF753 /* WriterWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WriterWidget.intentdefinition; sourceTree = "<group>"; };
 		30665F9D2555B778001BF753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30665F9F2555B778001BF753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30665FAD2555C065001BF753 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		306AF69725549DEB00C124FC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		306AF6A32555659000C124FC /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		306D582125514D360074CFD5 /* Writer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Writer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +109,7 @@
 		30A0F0962554501800AC2744 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		30B5B01E25543C83009E301F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		30B5B02625543DC3009E301F /* MenuToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuToolbarView.swift; sourceTree = "<group>"; };
+		30E545A7255EF4E400E14721 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
 		30F3776325519500003FAC4F /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		30F37768255195F9003FAC4F /* Writer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Writer.entitlements; sourceTree = "<group>"; };
 		30F377702551ADF0003FAC4F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -156,6 +160,7 @@
 				306D582625514D360074CFD5 /* ListView.swift */,
 				30F3776325519500003FAC4F /* ItemView.swift */,
 				30F377752551AF5D003FAC4F /* ToolbarView.swift */,
+				30E545A7255EF4E400E14721 /* NotesListView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				306AF6A32555659000C124FC /* HeaderView.swift */,
+				30665FAD2555C065001BF753 /* SearchBarView.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -489,11 +495,13 @@
 				306D582525514D360074CFD5 /* WriterApp.swift in Sources */,
 				30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */,
 				306AF6A42555659100C124FC /* HeaderView.swift in Sources */,
+				30665FAE2555C065001BF753 /* SearchBarView.swift in Sources */,
 				30B5B01F25543C83009E301F /* MenuView.swift in Sources */,
 				30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */,
 				30A0CC8A2551705700F42FF7 /* Editor.swift in Sources */,
 				30665FA12555B778001BF753 /* WriterWidget.intentdefinition in Sources */,
 				30F377762551AF5D003FAC4F /* ToolbarView.swift in Sources */,
+				30E545A8255EF4E400E14721 /* NotesListView.swift in Sources */,
 				30F377922551CA99003FAC4F /* EditorViewProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,15 +549,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mj.Writer.WriterWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer.WriterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -563,15 +572,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mj.Writer.WriterWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer.WriterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -703,6 +713,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -712,7 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mj.Writer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -728,6 +739,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -737,7 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mj.Writer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;

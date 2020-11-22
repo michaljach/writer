@@ -11,13 +11,15 @@ struct ItemView: View {
     @ObservedObject var item: Item
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(item.title ?? "")
+        let split = item.content?.components(separatedBy: CharacterSet.newlines)
+        
+        VStack(alignment: .leading, spacing: 0) {
+            Text(clearTags(text: split?[0] ?? ""))
                 .fontWeight(.semibold)
                 .font(.system(size: 16))
                 .lineLimit(1)
             Spacer()
-            Text(item.content ?? "")
+            Text(clearTags(text: split?.dropFirst().joined(separator: "\n") ?? ""))
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.gray)
         }
@@ -25,6 +27,12 @@ struct ItemView: View {
         .padding(.horizontal, 24)
         .padding(.vertical, 18)
         .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerColor")), alignment: .bottom)
+    }
+    
+    func clearTags(text: String) -> String {
+        return text
+            .replacingOccurrences(of: "# ", with: "")
+            .replacingOccurrences(of: "**", with: "")
     }
 }
 

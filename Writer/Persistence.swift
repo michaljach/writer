@@ -16,12 +16,12 @@ struct PersistenceController {
         
         let newItem = Item(context: viewContext)
         newItem.timestamp = Date()
-        newItem.title = "Welcome to Writer 👋"
+//        newItem.title = "Welcome to Writer 👋"
         newItem.content = "Keep your notes organized in beautiful and simple way !"
         
         let newItem1 = Item(context: viewContext)
         newItem1.timestamp = Date()
-        newItem1.title = "Markdown Editor"
+//        newItem1.title = "Markdown Editor"
         newItem1.content = "Our Editor allows you to make quick and expressive notes using live markdown parsing."
         
         do {
