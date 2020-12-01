@@ -39,6 +39,13 @@ struct PersistenceController {
     
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Writer")
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        if let test = FileManager.default.ubiquityIdentityToken {
+            print("tak")
+        } else {
+            
+        }
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

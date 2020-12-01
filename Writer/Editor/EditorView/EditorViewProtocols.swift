@@ -61,7 +61,7 @@ extension EditorViewProtocol {
     
     static func getHighlightedText(text: String, highlightRules: [HighlightRule], font: SystemFontAlias?, color: SystemColorAlias?) -> NSMutableAttributedString {
         let highlightedString = NSMutableAttributedString(string: text)
-        let all = NSRange(location: 0, length: text.count)
+        let all = NSRange(location: 0, length: text.utf16.count)
         
         let editorFont = UIFont.systemFont(ofSize: 17, weight: .medium)
         let editorTextColor = color ?? UIColor.label
@@ -111,6 +111,7 @@ fileprivate let horizontalRuleRegex = try! NSRegularExpression(pattern: "\n\n(-{
 fileprivate let unorderedListRegex = try! NSRegularExpression(pattern: "^(\\-|\\*)\\s", options: [.anchorsMatchLines])
 fileprivate let orderedListRegex = try! NSRegularExpression(pattern: "^\\d*\\.\\s", options: [.anchorsMatchLines])
 fileprivate let buttonRegex = try! NSRegularExpression(pattern: "<\\s*button[^>]*>(.*?)<\\s*/\\s*button>", options: [])
+fileprivate let hashtagRegex = try! NSRegularExpression(pattern: "^*#[a-z]+\\s+", options: [])
 fileprivate let strikethroughRegex = try! NSRegularExpression(pattern: "(~)((?!\\1).)+\\1", options: [])
 
 let codeFont = UIFont.monospacedSystemFont(ofSize: UIFont.systemFontSize, weight: .thin)
@@ -135,8 +136,12 @@ public extension EditorView {
         HighlightRule(pattern: codeBlockRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
         HighlightRule(pattern: headingRegex, formattingRules: [
             TextFormattingRule(fontTraits: headingTraits),
-            TextFormattingRule(key: .font, value: UIFont.monospacedSystemFont(ofSize: 21, weight: .bold)),
+            TextFormattingRule(key: .font, value: UIFont.systemFont(ofSize: 21, weight: .bold)),
             TextFormattingRule(key: .paragraphStyle, value: paragraphStyle())
+        ]),
+        HighlightRule(pattern: hashtagRegex, formattingRules: [
+            TextFormattingRule(key: .link, value: "link"),
+            TextFormattingRule(key: .font, value: UIFont.monospacedSystemFont(ofSize: 17, weight: .bold)),
         ]),
         HighlightRule(pattern: linkOrImageRegex, formattingRule: TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue)),
         HighlightRule(pattern: boldRegex, formattingRule: TextFormattingRule(key: .font, value: UIFont.systemFont(ofSize: 16, weight: .heavy))),
@@ -147,7 +152,10 @@ public extension EditorView {
         HighlightRule(pattern: horizontalRuleRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
         HighlightRule(pattern: unorderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
         HighlightRule(pattern: orderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
-        HighlightRule(pattern: buttonRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
+        HighlightRule(pattern: buttonRegex, formattingRules: [
+            TextFormattingRule(key: .foregroundColor, value: lighterColor),
+            TextFormattingRule(key: .link, value: "link"),
+        ]),
         HighlightRule(pattern: strikethroughRegex, formattingRules: [
             TextFormattingRule(key: .strikethroughStyle, value: NSUnderlineStyle.single.rawValue),
             TextFormattingRule(key: .strikethroughColor, value: textColor)

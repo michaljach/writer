@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotesListView: View {
+    @State private var selectedItem: Item?
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: Item.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)
@@ -17,25 +18,30 @@ struct NotesListView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+        UITableViewCell.appearance().selectionStyle = .none
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             List {
-                ForEach(items) { item in
+                ForEach(items) { (item) in
                     ZStack {
                         ItemView(item: item)
-                        NavigationLink(destination: Editor(item: item).navigationBarTitle("", displayMode: .inline)) {
+                        NavigationLink(destination: Editor(item: item).navigationBarTitle("", displayMode: .inline).background(Color("BackgroundColor").edgesIgnoringSafeArea(.all)), tag: item, selection: self.$selectedItem) {
                             EmptyView()
                         }
                         .opacity(0)
+                        .onTapGesture {
+                            self.selectedItem = item
+                        }
+                        
                     }
-                    .listRowBackground(Color("BackgroundColor").edgesIgnoringSafeArea(.all))
+                    .listRowBackground(self.selectedItem == item ? Color("SelectionColor").edgesIgnoringSafeArea(.all) : Color("BackgroundColor").edgesIgnoringSafeArea(.all))
                     .listRowInsets(EdgeInsets())
                 }
                 .onDelete(perform: onDelete)
-                .listStyle(PlainListStyle())
             }
+            .listStyle(PlainListStyle())
             .background(Color("BackgroundColor"))
             .animation(.default)
             
@@ -58,7 +64,6 @@ struct NotesListView: View {
                 .frame(width: 24, height: 24, alignment: .center)
                 .foregroundColor(Color("AccentColor"))
                 .padding(.vertical)
-                .transition(.move(edge: .leading))
         }
     }
     

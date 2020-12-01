@@ -17,18 +17,19 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
     }
     let highlightRules: [HighlightRule]
     
-    var onEditingChanged: () -> Void = {}
+    var onEditingChanged: (UITextView) -> Void = { _ in }
     var onCommit: () -> Void = {}
     var onTextChange: (String) -> Void = { _ in }
     
     private(set) var color: UIColor? = nil
     private(set) var font: UIFont? = nil
     private(set) var inset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private(set) var onInit: ((UITextView) -> Void)? = nil
     
     public init(
         text: Binding<String>,
         highlightRules: [HighlightRule],
-        onEditingChanged: @escaping () -> Void = {},
+        onEditingChanged: @escaping (UITextView) -> Void = { _ in },
         onCommit: @escaping () -> Void = {},
         onTextChange: @escaping (String) -> Void = { _ in }
     ) {
@@ -44,6 +45,27 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
     }
     
     public func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.isEditable = true
+        textView.textContainerInset = inset
+        textView.isScrollEnabled = true
+        let linkAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor(Color("LinkColor")),
+        ]
+        textView.linkTextAttributes = linkAttributes
+        textView.backgroundColor = UIColor(Color("BackgroundColor"))
+        
+        if let onInit = onInit {
+            onInit(textView)
+        }
+        
+        return textView
+    }
+    
+    public func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.isScrollEnabled = false
+        
         let highlightedText = EditorView.getHighlightedText(
             text: text,
             highlightRules: highlightRules,
@@ -51,35 +73,15 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
             color: color
         )
         
-        let textView = UITextView()
+        if let range = uiView.markedTextNSRange {
+            uiView.setAttributedMarkedText(highlightedText, selectedRange: range)
+        } else {
+            uiView.attributedText = highlightedText
+        }
         
-        textView.backgroundColor = UIColor(Color("BackgroundColor"))
-        textView.delegate = context.coordinator
-        textView.isEditable = true
-        textView.isScrollEnabled = true
-        textView.textContainerInset = inset
-        textView.attributedText = highlightedText
-        textView.becomeFirstResponder()
-        textView.selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
-        
-        return textView
-    }
-    
-    public func updateUIView(_ uiView: UITextView, context: Context) {
-//                uiView.isScrollEnabled = false
-//
-//                let highlightedText = EditorView.getHighlightedText(
-//                    text: text,
-//                    highlightRules: highlightRules,
-//                    font: font,
-//                    color: color
-//                )
-//
-//                uiView.backgroundColor = UIColor(Color("BackgroundColor"))
-//                uiView.selectedTextRange = context.coordinator.selectedTextRange
-//                uiView.attributedText = highlightedText
-//                uiView.isScrollEnabled = true
-//                uiView.selectedTextRange = context.coordinator.selectedTextRange
+        uiView.isScrollEnabled = true
+        uiView.selectedTextRange = context.coordinator.selectedTextRange
+        uiView.backgroundColor = UIColor(Color("BackgroundColor"))
     }
     
     public class Coordinator: NSObject, UITextViewDelegate {
@@ -91,33 +93,24 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         }
         
         public func textViewDidChange(_ textView: UITextView) {
+            textView.autocapitalizationType = .sentences
+            textView.reloadInputViews()
+            self.parent.text = textView.text
             selectedTextRange = textView.selectedTextRange
-            let highlightedText = EditorView.getHighlightedText(
-                text: textView.text,
-                highlightRules: parent.highlightRules,
-                font: parent.font,
-                color: parent.color
-            )
-            textView.attributedText = highlightedText
-            textView.selectedTextRange = selectedTextRange
-            parent.onTextChange(textView.text)
         }
         
         public func textViewDidBeginEditing(_ textView: UITextView) {
-            let highlightedText = EditorView.getHighlightedText(
-                text: parent.text,
-                highlightRules: parent.highlightRules,
-                font: parent.font,
-                color: parent.color
-            )
-            parent.onEditingChanged()
-            selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
-            textView.backgroundColor = UIColor(Color("BackgroundColor"))
-            textView.attributedText = highlightedText
+            parent.onEditingChanged(textView)
+            textView.selectedTextRange = textView.textRange(from: textView.endOfDocument, to: textView.endOfDocument)
         }
         
         public func textViewDidEndEditing(_ textView: UITextView) {
             parent.onCommit()
+        }
+        
+        public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+            print("cliked")
+            return false
         }
     }
 }
@@ -138,6 +131,12 @@ extension EditorView {
     public func defaultInset(_ inset: UIEdgeInsets) -> Self {
         var new = self
         new.inset = inset
+        return new
+    }
+    
+    public func onInit(_ onInit: @escaping (UITextView) -> Void) -> Self {
+        var new = self
+        new.onInit = onInit
         return new
     }
 }
