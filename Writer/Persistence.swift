@@ -8,20 +8,18 @@
 import CoreData
 
 struct PersistenceController {
-    static let shared = PersistenceController()
+    static let shared = PersistenceController(settings: UserSettings())
     
     static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
+        let result = PersistenceController(inMemory: true, settings: UserSettings())
         let viewContext = result.container.viewContext
         
         let newItem = Item(context: viewContext)
         newItem.timestamp = Date()
-//        newItem.title = "Welcome to Writer 👋"
         newItem.content = "Keep your notes organized in beautiful and simple way !"
         
         let newItem1 = Item(context: viewContext)
         newItem1.timestamp = Date()
-//        newItem1.title = "Markdown Editor"
         newItem1.content = "Our Editor allows you to make quick and expressive notes using live markdown parsing."
         
         do {
@@ -37,15 +35,10 @@ struct PersistenceController {
     
     let container: NSPersistentCloudKitContainer
     
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, settings: UserSettings) {
         container = NSPersistentCloudKitContainer(name: "Writer")
         container.viewContext.automaticallyMergesChangesFromParent = true
-        if let test = FileManager.default.ubiquityIdentityToken {
-            print("tak")
-        } else {
-            
-        }
-
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

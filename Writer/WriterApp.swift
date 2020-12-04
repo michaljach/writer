@@ -10,11 +10,14 @@ import SwiftUI
 @main
 struct WriterApp: App {
     let persistenceController = PersistenceController.shared
+    let settings = UserSettings()
     
     var body: some Scene {
         WindowGroup {
             ListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(GlobalMenu())
+                .environmentObject(settings)
         }
     }
 }

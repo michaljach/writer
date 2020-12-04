@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Editor: View {
+    @EnvironmentObject var settings: UserSettings
     @Environment(\.managedObjectContext) private var viewContext
     @State private var text: String = "# "
     @State var item: Item?
@@ -15,7 +16,7 @@ struct Editor: View {
     @State private var textView: UITextView?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             EditorView(text: $text, highlightRules: EditorView.markdown, onTextChange: { text in
                 viewContext.performAndWait {
                     if let item = item {
@@ -39,13 +40,16 @@ struct Editor: View {
                 }
             }
             .onAppear {
-                guard let content = item?.content else { return }
-                self.text = content
+                if let content = item?.content {
+                    self.text = content
+                } else {
+                    self.text = settings.heading ? "# " : ""
+                }
             }
             .navigationBarItems(trailing: trailingBarItems)
             .navigationBarTitle("", displayMode: .inline)
             
-            HStack {
+            HStack(spacing: 0) {
                 Button(action: {
                     keyboardAction(type: "bold")
                 }) {
@@ -111,8 +115,10 @@ struct Editor: View {
                         .foregroundColor(Color("AccentColor"))
                         .padding(.vertical)
                 }
+            
             }
             .padding(.horizontal)
+            .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all))
         }
     }
     
@@ -161,11 +167,11 @@ struct Editor: View {
     }
 }
 
-struct Editor_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            Editor()
-                .preferredColorScheme(.dark)
-        }
-    }
-}
+//struct Editor_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            Editor()
+//                .preferredColorScheme(.dark)
+//        }
+//    }
+//}

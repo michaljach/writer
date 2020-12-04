@@ -9,22 +9,30 @@ import SwiftUI
 
 struct NotesListView: View {
     @State private var selectedItem: Item?
+    private var selectedMenu = "all"
+    
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(entity: Item.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)
-    ])
+    @EnvironmentObject var globalMenu: GlobalMenu
+    @EnvironmentObject var settings: UserSettings
     
-    private var items: FetchedResults<Item>
+    var fetchRequest: FetchRequest<Item>
     
-    init() {
+    init(filter: String) {
+        if filter != "all" {
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "content CONTAINS %@", filter))
+        } else {
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)])
+        }
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         UITableViewCell.appearance().selectionStyle = .none
+        
+        selectedMenu = filter
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             List {
-                ForEach(items) { (item) in
+                ForEach(fetchRequest.wrappedValue) { (item) in
                     ZStack {
                         ItemView(item: item)
                         NavigationLink(destination: Editor(item: item).navigationBarTitle("", displayMode: .inline).background(Color("BackgroundColor").edgesIgnoringSafeArea(.all)), tag: item, selection: self.$selectedItem) {
@@ -53,6 +61,14 @@ struct NotesListView: View {
         .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
         .navigationBarTitle("Notes", displayMode: .inline)
         .navigationBarItems(trailing: trailingNavigationItems)
+        .onAppear {
+            settings.selectedFolder = selectedMenu
+            globalMenu.selected = selectedMenu
+            if settings.firstLaunch {
+                settings.firstLaunch = false
+                settings.createOnboardingData(viewContext: viewContext)
+            }
+        }
     }
     
     var trailingNavigationItems: some View {
@@ -69,7 +85,7 @@ struct NotesListView: View {
     
     private func onDelete(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { fetchRequest.wrappedValue[$0] }.forEach(viewContext.delete)
             
             do {
                 try viewContext.save()
@@ -85,6 +101,9 @@ struct NotesListView: View {
 
 struct NotesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ListView().preferredColorScheme(.dark)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(UserSettings())
+            .environmentObject(GlobalMenu())
     }
 }

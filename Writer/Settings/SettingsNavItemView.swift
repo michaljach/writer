@@ -7,37 +7,31 @@
 
 import SwiftUI
 
-struct SettingsNavItemView<Content: View>: View {
+struct SettingsNavItemView<Content: View, Content1: View>: View {
     var title: String
-    var current: Text?
+    var current: Content1
     let destination: Content
     
-    init(title: String, current: Text?, @ViewBuilder contentBuilder: () -> Content) {
+    init(title: String, current: () -> Content1, @ViewBuilder contentBuilder: () -> Content) {
         self.title = title
-        self.current = current
+        self.current = current()
         self.destination = contentBuilder()
     }
     
     var body: some View {
-        NavigationLink(destination: EmptyView()) {
+        HStack(spacing: 0) {
             Text(title)
                 .fontWeight(.medium)
             Spacer()
             
-            if let current = current {
-                current
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.gray)
-            }
-            
-            Image("arrow_right")
+            current
         }
     }
 }
 
 struct SettingsNavItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsNavItemView(title: "Setting", current: nil) {
+        SettingsNavItemView(title: "Setting", current: { EmptyView() }) {
             
         }
     }

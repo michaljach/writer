@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var settings: UserSettings
     @Binding var showSettings: Bool
     
     var body: some View {
@@ -19,20 +20,29 @@ struct SettingsView: View {
                     LazyVStack(alignment: .leading) {
                         Section(header: HeaderView(title: "Editor")) {
                             VStack(spacing: 0) {
-                                SettingsNavItemView(title: "Typography", current: nil) {
+                                SettingsNavItemView(title: "Typography", current: {
+                                    Image("arrow_right")
+                                }) {
                                     
                                 }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
                                 
-                                SettingsNavItemView(title: "Start note with", current: Text("Heading")) {
+                                SettingsNavItemView(title: "Start with heading", current: {
+                                    Toggle("", isOn: $settings.heading).frame(width: 60, height: 10, alignment: .center)
+                                }) {
                                     
                                 }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
-                                SettingsNavItemView(title: "Default Space", current: Text("All")) {
+                                SettingsNavItemView(title: "Default Space", current: {
+                                    HStack {
+                                        Text("All")
+                                        Image("arrow_right")
+                                    }
+                                }) {
                                     
                                 }
                                     .padding()
@@ -43,13 +53,17 @@ struct SettingsView: View {
                         
                         Section(header: HeaderView(title: "Look and feel")) {
                             VStack(spacing: 0) {
-                                SettingsNavItemView(title: "App Icons", current: nil) {
+                                SettingsNavItemView(title: "App Icons", current: {
+                                    EmptyView()
+                                }) {
                                     
                                 }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
-                                SettingsNavItemView(title: "Themes", current: Text("Raven")) {
+                                SettingsNavItemView(title: "Themes", current: {
+                                    EmptyView()
+                                }) {
                                     
                                 }
                                     .padding()
@@ -64,7 +78,11 @@ struct SettingsView: View {
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
-                                SettingsItemView(title: "Request feature", current: nil)
+                                SettingsNavItemView(title: "Request a feature", current: {
+                                    Image("arrow_right")
+                                }) {
+                                    
+                                }
                                     .padding()
                             }
                             .background(Color("SelectionColor"))
@@ -98,5 +116,7 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(showSettings: .constant(true))
             .preferredColorScheme(.dark)
+            .environmentObject(UserSettings())
+            .environmentObject(GlobalMenu())
     }
 }

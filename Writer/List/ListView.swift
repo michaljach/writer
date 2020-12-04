@@ -32,7 +32,7 @@ struct ListView: View  {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: logoButton)
             
-            NotesListView()
+            NotesListView(filter: "all")
             
             Editor()
                 .navigationBarTitle("", displayMode: .inline)

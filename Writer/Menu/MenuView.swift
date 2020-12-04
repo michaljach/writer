@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct MenuView: View {
+    @EnvironmentObject var globalMenu: GlobalMenu
+    @EnvironmentObject var settings: UserSettings
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 0) {
                     Section(header: HeaderView(title: "Notes")) {
-                        NavigationLink(
-                            destination: NotesListView(),
-                            label: {
-                                MenuItemView(title: "All", iconName: "box", active: true)
-                            })
-                        MenuItemView(title: "Favourites", iconName: "heart", active: false)
-                        MenuItemView(title: "Bin", iconName: "bin", active: false)
+                        NavigationLink(destination: NotesListView(filter: "all")) {
+                            MenuItemView(title: "All", iconName: "box", active: settings.selectedFolder == "all")
+                        }
+                        
+                        NavigationLink(destination: NotesListView(filter: "bin")) {
+                            MenuItemView(title: "Bin", iconName: "bin", active: settings.selectedFolder == "bin")
+                        }
                     }
                     
                     Section(header: HeaderView(title: "Spaces")) {
@@ -35,7 +38,6 @@ struct MenuView: View {
             MenuToolbarView()
         }
         .background(Color("BackgroundColor"))
-//        .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
     }
 }
 
