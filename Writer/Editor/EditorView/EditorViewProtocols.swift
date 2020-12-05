@@ -59,11 +59,11 @@ extension EditorViewProtocol {
     public typealias SystemFontAlias = UIFont
     public typealias SystemColorAlias = UIColor
     
-    static func getHighlightedText(text: String, highlightRules: [HighlightRule], font: SystemFontAlias?, color: SystemColorAlias?) -> NSMutableAttributedString {
+    static func getHighlightedText(text: String, highlightRules: [HighlightRule], font: SystemFontAlias?, color: SystemColorAlias?, settings: UserSettings) -> NSMutableAttributedString {
         let highlightedString = NSMutableAttributedString(string: text)
         let all = NSRange(location: 0, length: text.utf16.count)
         
-        let editorFont = UIFont.systemFont(ofSize: 17, weight: .medium)
+        let editorFont = settings.fontFace == "default" ? UIFont.systemFont(ofSize: CGFloat(settings.fontSize), weight: .medium) : UIFont.monospacedSystemFont(ofSize: CGFloat(settings.fontSize), weight: .medium)
         let editorTextColor = color ?? UIColor.label
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
@@ -131,35 +131,46 @@ public extension EditorView {
         return paragraphStyle
     }
     
-    static let markdown: Array<HighlightRule> = [
-        HighlightRule(pattern: inlineCodeRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
-        HighlightRule(pattern: codeBlockRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
-        HighlightRule(pattern: headingRegex, formattingRules: [
-            TextFormattingRule(fontTraits: headingTraits),
-            TextFormattingRule(key: .font, value: UIFont.systemFont(ofSize: 21, weight: .bold)),
-            TextFormattingRule(key: .paragraphStyle, value: paragraphStyle())
-        ]),
-        HighlightRule(pattern: hashtagRegex, formattingRules: [
-            TextFormattingRule(key: .link, value: "link"),
-            TextFormattingRule(key: .font, value: UIFont.monospacedSystemFont(ofSize: 17, weight: .bold)),
-        ]),
-        HighlightRule(pattern: linkOrImageRegex, formattingRule: TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue)),
-        HighlightRule(pattern: boldRegex, formattingRule: TextFormattingRule(key: .font, value: UIFont.systemFont(ofSize: 16, weight: .heavy))),
-        HighlightRule(pattern: asteriskEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
-        HighlightRule(pattern: underscoreEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
-        HighlightRule(pattern: boldEmphasisAsteriskRegex, formattingRule: TextFormattingRule(fontTraits: boldEmphasisTraits)),
-        HighlightRule(pattern: blockquoteRegex, formattingRule: TextFormattingRule(key: .backgroundColor, value: secondaryBackground)),
-        HighlightRule(pattern: horizontalRuleRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
-        HighlightRule(pattern: unorderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
-        HighlightRule(pattern: orderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
-        HighlightRule(pattern: buttonRegex, formattingRules: [
-            TextFormattingRule(key: .foregroundColor, value: lighterColor),
-            TextFormattingRule(key: .link, value: "link"),
-        ]),
-        HighlightRule(pattern: strikethroughRegex, formattingRules: [
-            TextFormattingRule(key: .strikethroughStyle, value: NSUnderlineStyle.single.rawValue),
-            TextFormattingRule(key: .strikethroughColor, value: textColor)
-        ])
-    ]
+    static func createFont(fontFace: String, fontSize: Double, weight: UIFont.Weight) -> UIFont {
+        switch fontFace {
+        case "monospace":
+            return UIFont.monospacedSystemFont(ofSize: CGFloat(fontSize), weight: weight)
+        default:
+            return UIFont.systemFont(ofSize: CGFloat(fontSize), weight: weight)
+        }
+    }
+    
+    static func markdown(fontFace:String, fontSize: Double) -> Array<HighlightRule> {
+        return [
+            HighlightRule(pattern: inlineCodeRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
+            HighlightRule(pattern: codeBlockRegex, formattingRule: TextFormattingRule(key: .font, value: codeFont)),
+            HighlightRule(pattern: headingRegex, formattingRules: [
+                TextFormattingRule(fontTraits: headingTraits),
+                TextFormattingRule(key: .font, value: createFont(fontFace: fontFace, fontSize: fontSize + 4, weight: .heavy)),
+                TextFormattingRule(key: .paragraphStyle, value: paragraphStyle())
+            ]),
+            HighlightRule(pattern: hashtagRegex, formattingRules: [
+                TextFormattingRule(key: .link, value: "link"),
+                TextFormattingRule(key: .font, value: createFont(fontFace: fontFace, fontSize: fontSize, weight: .bold)),
+            ]),
+            HighlightRule(pattern: linkOrImageRegex, formattingRule: TextFormattingRule(key: .underlineStyle, value: NSUnderlineStyle.single.rawValue)),
+            HighlightRule(pattern: boldRegex, formattingRule: TextFormattingRule(key: .font, value: createFont(fontFace: fontFace, fontSize: fontSize, weight: .heavy))),
+            HighlightRule(pattern: asteriskEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
+            HighlightRule(pattern: underscoreEmphasisRegex, formattingRule: TextFormattingRule(fontTraits: emphasisTraits)),
+            HighlightRule(pattern: boldEmphasisAsteriskRegex, formattingRule: TextFormattingRule(fontTraits: boldEmphasisTraits)),
+            HighlightRule(pattern: blockquoteRegex, formattingRule: TextFormattingRule(key: .backgroundColor, value: secondaryBackground)),
+            HighlightRule(pattern: horizontalRuleRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
+            HighlightRule(pattern: unorderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
+            HighlightRule(pattern: orderedListRegex, formattingRule: TextFormattingRule(key: .foregroundColor, value: lighterColor)),
+            HighlightRule(pattern: buttonRegex, formattingRules: [
+                TextFormattingRule(key: .foregroundColor, value: lighterColor),
+                TextFormattingRule(key: .link, value: "link"),
+            ]),
+            HighlightRule(pattern: strikethroughRegex, formattingRules: [
+                TextFormattingRule(key: .strikethroughStyle, value: NSUnderlineStyle.single.rawValue),
+                TextFormattingRule(key: .strikethroughColor, value: textColor)
+            ])
+        ]
+    }
 }
 

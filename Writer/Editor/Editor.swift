@@ -17,7 +17,7 @@ struct Editor: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            EditorView(text: $text, highlightRules: EditorView.markdown, onTextChange: { text in
+            EditorView(text: $text, highlightRules: EditorView.markdown(fontFace: settings.fontFace, fontSize: settings.fontSize), onTextChange: { text in
                 viewContext.performAndWait {
                     if let item = item {
                         item.timestamp = Date()
@@ -167,11 +167,12 @@ struct Editor: View {
     }
 }
 
-//struct Editor_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            Editor()
-//                .preferredColorScheme(.dark)
-//        }
-//    }
-//}
+struct Editor_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            Editor()
+                .preferredColorScheme(.dark)
+                .environmentObject(UserSettings())
+        }
+    }
+}

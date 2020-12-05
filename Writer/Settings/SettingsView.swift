@@ -20,13 +20,16 @@ struct SettingsView: View {
                     LazyVStack(alignment: .leading) {
                         Section(header: HeaderView(title: "Editor")) {
                             VStack(spacing: 0) {
-                                SettingsNavItemView(title: "Typography", current: {
-                                    Image("arrow_right")
-                                }) {
-                                    
+                                NavigationLink(destination: TypographySettingsView()) {
+                                    SettingsNavItemView(title: "Typography", current: {
+                                        Image("arrow_right")
+                                    }) {
+                                        
+                                    }
+                                        .padding()
+                                        .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 }
-                                    .padding()
-                                    .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+
                                 
                                 
                                 SettingsNavItemView(title: "Start with heading", current: {

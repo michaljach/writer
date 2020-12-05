@@ -30,6 +30,7 @@
 		306D584725514D390074CFD5 /* WriterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306D584625514D390074CFD5 /* WriterUITests.swift */; };
 		30A0CC8A2551705700F42FF7 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A0CC892551705700F42FF7 /* Editor.swift */; };
 		30A0F0972554501800AC2744 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A0F0962554501800AC2744 /* MenuItemView.swift */; };
+		30AD6554257A5E9E0015F0F7 /* TypographySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AD6553257A5E9E0015F0F7 /* TypographySettings.swift */; };
 		30B5B01F25543C83009E301F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B01E25543C83009E301F /* MenuView.swift */; };
 		30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B02625543DC3009E301F /* MenuToolbarView.swift */; };
 		30C1A363256A94A800CE13F1 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C1A362256A94A800CE13F1 /* UITextView.swift */; };
@@ -111,6 +112,7 @@
 		306D584825514D390074CFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30A0CC892551705700F42FF7 /* Editor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		30A0F0962554501800AC2744 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		30AD6553257A5E9E0015F0F7 /* TypographySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographySettings.swift; sourceTree = "<group>"; };
 		30B5B01E25543C83009E301F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		30B5B02625543DC3009E301F /* MenuToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuToolbarView.swift; sourceTree = "<group>"; };
 		30C1A362256A94A800CE13F1 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		306AF69625549DDE00C124FC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				30AD6552257A5E880015F0F7 /* TypographySettings */,
 				306AF69725549DEB00C124FC /* SettingsView.swift */,
 				30665F832555805B001BF753 /* SettingsNavItemView.swift */,
 				30665F8B2555B318001BF753 /* SettingsItemView.swift */,
@@ -278,6 +281,14 @@
 				30A0CC892551705700F42FF7 /* Editor.swift */,
 			);
 			path = Editor;
+			sourceTree = "<group>";
+		};
+		30AD6552257A5E880015F0F7 /* TypographySettings */ = {
+			isa = PBXGroup;
+			children = (
+				30AD6553257A5E9E0015F0F7 /* TypographySettings.swift */,
+			);
+			path = TypographySettings;
 			sourceTree = "<group>";
 		};
 		30B5B01D25543C77009E301F /* Menu */ = {
@@ -513,6 +524,7 @@
 				30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */,
 				30A0CC8A2551705700F42FF7 /* Editor.swift in Sources */,
 				30665FA12555B778001BF753 /* WriterWidget.intentdefinition in Sources */,
+				30AD6554257A5E9E0015F0F7 /* TypographySettings.swift in Sources */,
 				30F377762551AF5D003FAC4F /* ToolbarView.swift in Sources */,
 				30E545A8255EF4E400E14721 /* NotesListView.swift in Sources */,
 				30F0623B256B0C7400446C6D /* UserSettings.swift in Sources */,

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject var globalMenu: GlobalMenu
     @EnvironmentObject var settings: UserSettings
     
     var body: some View {
@@ -19,6 +18,7 @@ struct MenuView: View {
                         NavigationLink(destination: NotesListView(filter: "all")) {
                             MenuItemView(title: "All", iconName: "box", active: settings.selectedFolder == "all")
                         }
+                        .padding(.top)
                         
                         NavigationLink(destination: NotesListView(filter: "bin")) {
                             MenuItemView(title: "Bin", iconName: "bin", active: settings.selectedFolder == "bin")
@@ -27,6 +27,7 @@ struct MenuView: View {
                     
                     Section(header: HeaderView(title: "Spaces")) {
                         MenuItemView(title: "Finance", iconName: "folder", active: false)
+                            .padding(.top)
                         MenuItemView(title: "Personal", iconName: "folder", active: false)
                         MenuItemView(title: "Games", iconName: "folder", active: false)
                     }
@@ -44,5 +45,6 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+            .environmentObject(UserSettings())
     }
 }

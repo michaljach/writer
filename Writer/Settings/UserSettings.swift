@@ -28,12 +28,27 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var fontFace: String {
+        didSet {
+            UserDefaults.standard.set(fontFace, forKey: "fontFace")
+        }
+    }
+    
+    @Published var fontSize: Double {
+        didSet {
+            UserDefaults.standard.set(fontSize, forKey: "fontSize")
+        }
+    }
+    
     init() {
         UserDefaults.standard.register(defaults: ["firstLaunch" : true])
         UserDefaults.standard.register(defaults: ["heading" : true])
+        UserDefaults.standard.register(defaults: ["fontSize" : 17])
         self.heading = UserDefaults.standard.bool(forKey: "heading")
         self.firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")
         self.selectedFolder = UserDefaults.standard.string(forKey: "selectedFolder") ?? "all"
+        self.fontFace = UserDefaults.standard.string(forKey: "fontFace") ?? "default"
+        self.fontSize = UserDefaults.standard.double(forKey: "fontSize")
     }
     
     func createOnboardingData(viewContext: NSManagedObjectContext) {

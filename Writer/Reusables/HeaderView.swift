@@ -13,10 +13,10 @@ struct HeaderView: View {
     var body: some View {
         Text(title)
             .font(.caption)
-            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            .textCase(/*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/)
+            .fontWeight(.medium)
             .foregroundColor(.gray)
-            .padding(.vertical, 12)
+            .padding(.top, 12)
+            .padding(.leading, 12)
     }
 }
 

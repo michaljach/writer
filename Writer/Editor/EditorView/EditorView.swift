@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 
 public struct EditorView: UIViewRepresentable, EditorViewProtocol {
+    @EnvironmentObject var settings: UserSettings
     
     @Binding var text: String {
         didSet {
@@ -70,7 +71,8 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
             text: text,
             highlightRules: highlightRules,
             font: font,
-            color: color
+            color: color,
+            settings: settings
         )
         
         if let range = uiView.markedTextNSRange {
