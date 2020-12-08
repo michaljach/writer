@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuToolbarView: View {
+    @EnvironmentObject var settings: UserSettings
     @State var showSettings = false
     
     var body: some View {
@@ -26,6 +27,7 @@ struct MenuToolbarView: View {
         .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
         .sheet(isPresented: $showSettings, content: {
             SettingsView(showSettings: self.$showSettings)
+                .environmentObject(settings)
         })
     }
 }

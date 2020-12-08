@@ -40,6 +40,12 @@ class UserSettings: ObservableObject {
         }
     }
     
+    @Published var icon: String {
+        didSet {
+            UserDefaults.standard.set(icon, forKey: "icon")
+        }
+    }
+    
     init() {
         UserDefaults.standard.register(defaults: ["firstLaunch" : true])
         UserDefaults.standard.register(defaults: ["heading" : true])
@@ -49,6 +55,7 @@ class UserSettings: ObservableObject {
         self.selectedFolder = UserDefaults.standard.string(forKey: "selectedFolder") ?? "all"
         self.fontFace = UserDefaults.standard.string(forKey: "fontFace") ?? "default"
         self.fontSize = UserDefaults.standard.double(forKey: "fontSize")
+        self.icon = UserDefaults.standard.string(forKey: "icon") ?? "default"
     }
     
     func createOnboardingData(viewContext: NSManagedObjectContext) {

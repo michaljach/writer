@@ -10,7 +10,7 @@ import SwiftUI
 struct TypographySettingsView: View {
     @EnvironmentObject var settings: UserSettings
     
-    @State private var text: String = "# This is example note\nHello from **Typography Settings** screen. This preview shows **bold** text as well as *italic* and ~striked out~.\n\n> You can also see a highlight.\n\n#pretty #lovewriter "
+    @State private var text: String = "# This is example note\nHello from **Typography Settings** screen. This preview shows **bold** text as well as *italic* and ~striked out~.\n\n> You can also see a highlight.\n\n#nice #lovewriter "
     
     var body: some View {
         ZStack {
@@ -25,21 +25,24 @@ struct TypographySettingsView: View {
                             }) {
                                 
                             }
+                            .padding()
+                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                            .background(Color("SelectionColor"))
                             .onTapGesture {
                                 settings.fontFace = "default"
                             }
-                            .padding()
-                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                            
                             SettingsNavItemView(title: "Monospace", current: {
                                 settings.fontFace == "monospace" ? Image("tick") : Image("")
                             }) {
                                 
                             }
+                            .padding()
+                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                            .background(Color("SelectionColor"))
                             .onTapGesture {
                                 settings.fontFace = "monospace"
                             }
-                            .padding()
-                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                             
                         }
                         .background(Color("SelectionColor"))
@@ -91,6 +94,7 @@ struct TypographySettingsView: View {
 struct TypographySettingsView_Previews: PreviewProvider {
     static var previews: some View {
         TypographySettingsView()
+            .environmentObject(UserSettings())
             
     }
 }

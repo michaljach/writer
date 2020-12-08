@@ -26,10 +26,10 @@ struct SettingsView: View {
                                     }) {
                                         
                                     }
-                                        .padding()
-                                        .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                                    .padding()
+                                    .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 }
-
+                                
                                 
                                 
                                 SettingsNavItemView(title: "Start with heading", current: {
@@ -37,8 +37,8 @@ struct SettingsView: View {
                                 }) {
                                     
                                 }
-                                    .padding()
-                                    .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                                .padding()
+                                .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
                                 
                                 SettingsNavItemView(title: "Default Space", current: {
                                     HStack {
@@ -48,7 +48,8 @@ struct SettingsView: View {
                                 }) {
                                     
                                 }
-                                    .padding()
+                                .padding()
+                                .opacity(0.2)
                             }
                             .background(Color("SelectionColor"))
                             .cornerRadius(12)
@@ -56,20 +57,23 @@ struct SettingsView: View {
                         
                         Section(header: HeaderView(title: "Look and feel")) {
                             VStack(spacing: 0) {
-                                SettingsNavItemView(title: "App Icons", current: {
-                                    EmptyView()
-                                }) {
-                                    
-                                }
+                                NavigationLink(destination: IconSettingsView()) {
+                                    SettingsNavItemView(title: "App Icon", current: {
+                                        Image("arrow_right")
+                                    }) {
+                                        
+                                    }
                                     .padding()
                                     .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                                }
                                 
                                 SettingsNavItemView(title: "Themes", current: {
                                     EmptyView()
                                 }) {
                                     
                                 }
-                                    .padding()
+                                .padding()
+                                .opacity(0.2)
                             }
                             .background(Color("SelectionColor"))
                             .cornerRadius(12)
@@ -86,7 +90,8 @@ struct SettingsView: View {
                                 }) {
                                     
                                 }
-                                    .padding()
+                                .padding()
+                                .opacity(0.2)
                             }
                             .background(Color("SelectionColor"))
                             .cornerRadius(12)

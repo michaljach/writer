@@ -43,6 +43,9 @@
 		30F377862551C7A1003FAC4F /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F377852551C7A1003FAC4F /* EditorView.swift */; };
 		30F377922551CA99003FAC4F /* EditorViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F377912551CA99003FAC4F /* EditorViewProtocols.swift */; };
 		30F377982551CAF9003FAC4F /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F377972551CAF9003FAC4F /* UIFont.swift */; };
+		30F555DA257BC91E0046E7D9 /* IconSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F555D9257BC91E0046E7D9 /* IconSettings.swift */; };
+		30F555E2257BD00E0046E7D9 /* icon_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30F555E0257BD00E0046E7D9 /* icon_dark@3x.png */; };
+		30F555E3257BD00E0046E7D9 /* icon_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30F555E1257BD00E0046E7D9 /* icon_dark@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +129,9 @@
 		30F377852551C7A1003FAC4F /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		30F377912551CA99003FAC4F /* EditorViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewProtocols.swift; sourceTree = "<group>"; };
 		30F377972551CAF9003FAC4F /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		30F555D9257BC91E0046E7D9 /* IconSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSettings.swift; sourceTree = "<group>"; };
+		30F555E0257BD00E0046E7D9 /* icon_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dark@3x.png"; sourceTree = "<group>"; };
+		30F555E1257BD00E0046E7D9 /* icon_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_dark@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +238,7 @@
 		306D582325514D360074CFD5 /* Writer */ = {
 			isa = PBXGroup;
 			children = (
+				30F555DF257BD0030046E7D9 /* AppIcons */,
 				306AF6A22555654600C124FC /* Reusables */,
 				306AF69625549DDE00C124FC /* Settings */,
 				30B5B01D25543C77009E301F /* Menu */,
@@ -287,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				30AD6553257A5E9E0015F0F7 /* TypographySettings.swift */,
+				30F555D9257BC91E0046E7D9 /* IconSettings.swift */,
 			);
 			path = TypographySettings;
 			sourceTree = "<group>";
@@ -329,6 +337,15 @@
 				30C1A362256A94A800CE13F1 /* UITextView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		30F555DF257BD0030046E7D9 /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				30F555E1257BD00E0046E7D9 /* icon_dark@2x.png */,
+				30F555E0257BD00E0046E7D9 /* icon_dark@3x.png */,
+			);
+			path = AppIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,7 +487,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				306D582C25514D380074CFD5 /* Preview Assets.xcassets in Resources */,
+				30F555E2257BD00E0046E7D9 /* icon_dark@3x.png in Resources */,
 				306D582925514D380074CFD5 /* Assets.xcassets in Resources */,
+				30F555E3257BD00E0046E7D9 /* icon_dark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +541,7 @@
 				30665FAE2555C065001BF753 /* SearchBarView.swift in Sources */,
 				30B5B01F25543C83009E301F /* MenuView.swift in Sources */,
 				30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */,
+				30F555DA257BC91E0046E7D9 /* IconSettings.swift in Sources */,
 				30A0CC8A2551705700F42FF7 /* Editor.swift in Sources */,
 				30665FA12555B778001BF753 /* WriterWidget.intentdefinition in Sources */,
 				30AD6554257A5E9E0015F0F7 /* TypographySettings.swift in Sources */,
@@ -575,7 +595,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -598,7 +618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -739,7 +759,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -765,7 +785,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
