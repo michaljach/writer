@@ -62,7 +62,7 @@ struct NotesListView: View {
         .navigationBarItems(trailing: trailingNavigationItems)
         .onAppear {
             settings.selectedFolder = selectedMenu
-            globalMenu.selected = selectedMenu
+
             if settings.firstLaunch {
                 settings.firstLaunch = false
                 settings.createOnboardingData(viewContext: viewContext)
