@@ -16,7 +16,6 @@ struct WriterApp: App {
         WindowGroup {
             ListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(GlobalMenu())
                 .environmentObject(settings)
         }
     }

@@ -125,6 +125,5 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView(showSettings: .constant(true))
             .preferredColorScheme(.dark)
             .environmentObject(UserSettings())
-            .environmentObject(GlobalMenu())
     }
 }

@@ -12,7 +12,6 @@ struct NotesListView: View {
     private var selectedMenu = "all"
     
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var globalMenu: GlobalMenu
     @EnvironmentObject var settings: UserSettings
     
     var fetchRequest: FetchRequest<Item>
@@ -104,6 +103,5 @@ struct NotesListView_Previews: PreviewProvider {
         ListView().preferredColorScheme(.dark)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(UserSettings())
-            .environmentObject(GlobalMenu())
     }
 }
