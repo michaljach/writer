@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var settings: UserSettings
-    @Binding var showSettings: Bool
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -106,7 +106,7 @@ struct SettingsView: View {
                     }
                 }
                 .navigationBarItems(trailing: Button(action: {
-                    self.showSettings.toggle()
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Image("close")
                         .resizable()
@@ -122,7 +122,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(showSettings: .constant(true))
+        SettingsView()
             .preferredColorScheme(.dark)
             .environmentObject(UserSettings())
     }

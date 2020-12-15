@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct NotesListView: View {
-    @State private var selectedItem: Item?
-    private var selectedMenu = "all"
-    
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var settings: UserSettings
     
+    @State private var selectedItem: Item?
+    
     var fetchRequest: FetchRequest<Item>
+    var fetchMenuRequest = FetchRequest<Folder>(entity: Folder.entity(), sortDescriptors: [])
     
     init(filter: String) {
-        if filter != "all" {
-            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "content CONTAINS %@", filter))
-        } else {
+        switch filter {
+        case "all":
             fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)])
+            break
+        case "favourites":
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "isFavourited = %d", true))
+            break
+        default:
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "ANY SELF.folders.id == %@", filter))
         }
+        
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
         UITableViewCell.appearance().selectionStyle = .none
-        
-        selectedMenu = filter
     }
     
     var body: some View {
@@ -61,9 +65,7 @@ struct NotesListView: View {
         .navigationBarTitle("Notes", displayMode: .inline)
         .navigationBarItems(trailing: trailingNavigationItems)
         .onAppear {
-            settings.selectedFolder = selectedMenu
-
-            if settings.firstLaunch {
+            if settings.firstLaunch && fetchRequest.wrappedValue.isEmpty {
                 settings.firstLaunch = false
                 settings.createOnboardingData(viewContext: viewContext)
             }

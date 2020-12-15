@@ -43,7 +43,7 @@ struct WriterWidgetEntryView : View {
                     .resizable()
                     .frame(width: 28, height: 28, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
-                Text("This is my example note which i need on home screen.")
+                Text(text)
                     .fontWeight(.medium)
                     .font(.system(size: 14))
                     .lineLimit(4)
@@ -52,6 +52,14 @@ struct WriterWidgetEntryView : View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("WidgetBackground"))
+    }
+    
+    var text: String {
+        if let userDefaults = UserDefaults(suiteName: "group.com.mj.Writer") {
+            return userDefaults.string(forKey: "widgetItem") ?? "Tap bookmark icon on selected note to see it here."
+        } else {
+            return "Tap bookmark icon on selected note to see it here."
+        }
     }
 }
 

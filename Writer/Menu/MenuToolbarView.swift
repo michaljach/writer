@@ -10,25 +10,55 @@ import SwiftUI
 struct MenuToolbarView: View {
     @EnvironmentObject var settings: UserSettings
     @State var showSettings = false
+    @State var showFolders = false
+    
+    enum Sheet: Hashable, Identifiable {
+        case a
+        case b
+        
+        var id: Int {
+            return self.hashValue
+        }
+    }
+    
+    @State var activeSheet: Sheet? = nil
     
     var body: some View {
         HStack {
-            Spacer()
             Button(action: {
-                self.showSettings.toggle()
+                self.activeSheet = .a
             }, label: {
                 Image("settings")
                     .resizable()
                     .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color("DimmedColor"))
             })
+            Spacer()
+            Button(action: {
+                self.activeSheet = .b
+            }, label: {
+                Image("plus")
+                    .resizable()
+                    .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(Color("DimmedColor"))
+            })
+            .sheet(isPresented: $showFolders, content: {
+                AddFolderView()
+            })
         }
         .padding()
         .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
-        .sheet(isPresented: $showSettings, content: {
-            SettingsView(showSettings: self.$showSettings)
-                .environmentObject(settings)
+        .background(EmptyView().sheet(isPresented: $showFolders) {
+            AddFolderView()
         })
+        .sheet(item: $activeSheet) { item in
+            if item == .a {
+                SettingsView()
+                    .environmentObject(settings)
+            } else if item == .b {
+                AddFolderView()
+            }
+        }
     }
 }
 

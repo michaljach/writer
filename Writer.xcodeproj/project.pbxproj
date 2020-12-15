@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		30230E45256E939A0094A9E8 /* Writer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 306D582F25514D380074CFD5 /* Writer.xcdatamodeld */; };
+		305D2C802580E5D90096731A /* SystemMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D2C7F2580E5D90096731A /* SystemMenuItem.swift */; };
+		305D2C8625810D580096731A /* AddFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D2C8525810D580096731A /* AddFolderView.swift */; };
 		30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F832555805B001BF753 /* SettingsNavItemView.swift */; };
 		30665F8C2555B318001BF753 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F8B2555B318001BF753 /* SettingsItemView.swift */; };
 		30665F962555B775001BF753 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30665F952555B775001BF753 /* WidgetKit.framework */; };
@@ -34,6 +36,7 @@
 		30B5B01F25543C83009E301F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B01E25543C83009E301F /* MenuView.swift */; };
 		30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5B02625543DC3009E301F /* MenuToolbarView.swift */; };
 		30C1A363256A94A800CE13F1 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C1A362256A94A800CE13F1 /* UITextView.swift */; };
+		30DACA3A2589256C00C3CED3 /* MoveToFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DACA392589256C00C3CED3 /* MoveToFolder.swift */; };
 		30E545A8255EF4E400E14721 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E545A7255EF4E400E14721 /* NotesListView.swift */; };
 		30F0623B256B0C7400446C6D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F0623A256B0C7400446C6D /* UserSettings.swift */; };
 		30F3776425519500003FAC4F /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F3776325519500003FAC4F /* ItemView.swift */; };
@@ -86,6 +89,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		305D2C7F2580E5D90096731A /* SystemMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMenuItem.swift; sourceTree = "<group>"; };
+		305D2C8525810D580096731A /* AddFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderView.swift; sourceTree = "<group>"; };
+		305D2C9325850BBF0096731A /* Writer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Writer_v2.xcdatamodel; sourceTree = "<group>"; };
 		30665F832555805B001BF753 /* SettingsNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavItemView.swift; sourceTree = "<group>"; };
 		30665F8B2555B318001BF753 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		30665F942555B775001BF753 /* WriterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WriterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +124,8 @@
 		30B5B01E25543C83009E301F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		30B5B02625543DC3009E301F /* MenuToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuToolbarView.swift; sourceTree = "<group>"; };
 		30C1A362256A94A800CE13F1 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		30DACA392589256C00C3CED3 /* MoveToFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolder.swift; sourceTree = "<group>"; };
+		30DACA3F25892F3F00C3CED3 /* WriterWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WriterWidgetExtension.entitlements; sourceTree = "<group>"; };
 		30E545A7255EF4E400E14721 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
 		30F0623A256B0C7400446C6D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		30F3776325519500003FAC4F /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
@@ -213,6 +221,7 @@
 		306D581825514D360074CFD5 = {
 			isa = PBXGroup;
 			children = (
+				30DACA3F25892F3F00C3CED3 /* WriterWidgetExtension.entitlements */,
 				306D582325514D360074CFD5 /* Writer */,
 				306D583A25514D380074CFD5 /* WriterTests */,
 				306D584525514D390074CFD5 /* WriterUITests */,
@@ -284,6 +293,7 @@
 			children = (
 				30F3778A2551C9A2003FAC4F /* EditorView */,
 				30A0CC892551705700F42FF7 /* Editor.swift */,
+				30DACA392589256C00C3CED3 /* MoveToFolder.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -303,6 +313,8 @@
 				30B5B01E25543C83009E301F /* MenuView.swift */,
 				30A0F0962554501800AC2744 /* MenuItemView.swift */,
 				30B5B02625543DC3009E301F /* MenuToolbarView.swift */,
+				305D2C7F2580E5D90096731A /* SystemMenuItem.swift */,
+				305D2C8525810D580096731A /* AddFolderView.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -521,6 +533,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DACA3A2589256C00C3CED3 /* MoveToFolder.swift in Sources */,
+				305D2C8625810D580096731A /* AddFolderView.swift in Sources */,
 				30F377862551C7A1003FAC4F /* EditorView.swift in Sources */,
 				306D583125514D380074CFD5 /* Writer.xcdatamodeld in Sources */,
 				30A0F0972554501800AC2744 /* MenuItemView.swift in Sources */,
@@ -529,6 +543,7 @@
 				306D582E25514D380074CFD5 /* Persistence.swift in Sources */,
 				306D582725514D360074CFD5 /* ListView.swift in Sources */,
 				30C1A363256A94A800CE13F1 /* UITextView.swift in Sources */,
+				305D2C802580E5D90096731A /* SystemMenuItem.swift in Sources */,
 				30F377982551CAF9003FAC4F /* UIFont.swift in Sources */,
 				306AF69825549DEB00C124FC /* SettingsView.swift in Sources */,
 				306D582525514D360074CFD5 /* WriterApp.swift in Sources */,
@@ -590,8 +605,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WriterWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -613,8 +629,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WriterWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -755,7 +772,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -781,7 +798,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -937,9 +954,10 @@
 		306D582F25514D380074CFD5 /* Writer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				305D2C9325850BBF0096731A /* Writer_v2.xcdatamodel */,
 				306D583025514D380074CFD5 /* Writer.xcdatamodel */,
 			);
-			currentVersion = 306D583025514D380074CFD5 /* Writer.xcdatamodel */;
+			currentVersion = 305D2C9325850BBF0096731A /* Writer_v2.xcdatamodel */;
 			path = Writer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

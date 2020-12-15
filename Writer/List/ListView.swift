@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct ListView: View  {
+    @EnvironmentObject var settings: UserSettings
+    
     init() {
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()
@@ -22,6 +24,7 @@ struct ListView: View  {
         UINavigationBar.appearance().tintColor = UIColor(Color("AccentColor"))
         
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
+        
     }
     
     var body: some View {
@@ -32,7 +35,8 @@ struct ListView: View  {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: logoButton)
             
-            NotesListView(filter: "all")
+            NotesListView(filter: settings.selectedFolder)
+                .environmentObject(settings)
             
             Editor()
                 .navigationBarTitle("", displayMode: .inline)

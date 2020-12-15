@@ -38,7 +38,6 @@ struct PersistenceController {
     init(inMemory: Bool = false, settings: UserSettings) {
         container = NSPersistentCloudKitContainer(name: "Writer")
         container.viewContext.automaticallyMergesChangesFromParent = true
-        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
