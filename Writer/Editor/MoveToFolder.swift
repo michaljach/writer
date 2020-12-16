@@ -21,17 +21,58 @@ struct MoveToFolderView: View {
                 
                 ScrollView {
                     LazyVStack(alignment: .leading) {
-                        Section(header: HeaderView(title: "Move to one of existing folders")) {
+                        Section(header: HeaderView(title: "Move note to one or more of existing folders")) {
                             VStack {
-                                ForEach(fetchRequest.wrappedValue) { item in
-                                        MenuItemView(title: item.title!, iconName: "folder", active: false)
-                                            .background(Color("SelectionColor"))
-                                            .onTapGesture {
-                                                note?.folders = []
-                                                note?.addToFolders(item)
-                                                try! viewContext.save()
-                                                self.presentationMode.wrappedValue.dismiss()
+                                if fetchRequest.wrappedValue.isEmpty {
+                                    VStack {
+                                        Text("No folders created.")
+                                            .padding()
+                                            .opacity(0.3)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color("SelectionColor"))
+                                    .cornerRadius(12)
+                                } else {
+                                    ForEach(fetchRequest.wrappedValue) { item in
+                                        HStack {
+                                            Image("folder")
+                                                .resizable()
+                                                .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                            
+                                            Text(item.title!)
+                                                .fontWeight(.semibold)
+                                            Spacer()
+                                            
+                                            if let folders = note?.folders {
+                                                if folders.contains(item) {
+                                                    Image("tick")
+                                                }
                                             }
+                                        }
+                                        .padding(12)
+                                        .cornerRadius(12)
+                                        .background(Color("SelectionColor"))
+                                        .onTapGesture {
+                                            if let folders = note?.folders {
+                                                if folders.contains(item) {
+                                                    note?.removeFromFolders(item)
+                                                    try! viewContext.save()
+                                                } else {
+                                                    note?.addToFolders(item)
+                                                    try! viewContext.save()
+                                                }
+                                            }
+                                        }
+                                        
+//                                        MenuItemView(title: item.title!, iconName: "folder", active: false)
+//                                            .background(Color("SelectionColor"))
+//                                            .onTapGesture {
+//                                                note?.folders = []
+//                                                note?.addToFolders(item)
+//                                                try! viewContext.save()
+//                                                self.presentationMode.wrappedValue.dismiss()
+//                                            }
+                                    }
                                 }
                             }
                             .background(Color("SelectionColor"))

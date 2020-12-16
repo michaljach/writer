@@ -18,11 +18,25 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>icon_aqua</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_aqua</string>
+				</array>
+			</dict>
 			<key>icon_dark</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>icon_dark</string>
+				</array>
+			</dict>
+			<key>icon_grey</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_grey</string>
 				</array>
 			</dict>
 		</dict>
@@ -53,11 +67,25 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
+			<key>icon_aqua</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_aqua</string>
+				</array>
+			</dict>
 			<key>icon_dark</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>icon_dark</string>
+				</array>
+			</dict>
+			<key>icon_grey</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>icon_grey</string>
 				</array>
 			</dict>
 		</dict>

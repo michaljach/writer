@@ -19,13 +19,16 @@ struct NotesListView: View {
     init(filter: String) {
         switch filter {
         case "all":
-            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)])
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "isBin == nil || isBin == false"))
             break
         case "favourites":
             fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "isFavourited = %d", true))
             break
+        case "bin":
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "isBin = %d", true))
+            break
         default:
-            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "ANY SELF.folders.id == %@", filter))
+            fetchRequest = FetchRequest<Item>(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)], predicate: NSPredicate(format: "ANY SELF.folders.id == %@ && (isBin == nil || isBin == false)", filter))
         }
         
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
@@ -62,7 +65,7 @@ struct NotesListView: View {
         .padding(0)
         .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all))
         .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
-        .navigationBarTitle("Notes", displayMode: .inline)
+        .navigationBarTitle(settings.selectedFolder.capitalized, displayMode: .inline)
         .navigationBarItems(trailing: trailingNavigationItems)
         .onAppear {
             if settings.firstLaunch && fetchRequest.wrappedValue.isEmpty {
@@ -86,7 +89,13 @@ struct NotesListView: View {
     
     private func onDelete(offsets: IndexSet) {
         withAnimation {
-            offsets.map { fetchRequest.wrappedValue[$0] }.forEach(viewContext.delete)
+            if settings.selectedFolder == "bin" {
+                offsets.map { fetchRequest.wrappedValue[$0] }.forEach(viewContext.delete)
+            } else {
+                offsets.map { fetchRequest.wrappedValue[$0] }.forEach { item in
+                    item.isBin = true
+                }
+            }
             
             do {
                 try viewContext.save()

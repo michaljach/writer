@@ -49,30 +49,41 @@ struct AddFolderView: View {
                         
                         Section(header: HeaderView(title: "Existing folders")) {
                             VStack {
-                                ForEach(fetchRequest.wrappedValue) { item in
-                                    HStack {
-                                        MenuItemView(title: item.title!, iconName: "folder", active: false)
-                                        
-                                        Button(action: {
-                                            withAnimation {
-                                                viewContext.delete(item)
-                                                
-                                                do {
-                                                    try viewContext.save()
-                                                } catch {
-                                                    // Replace this implementation with code to handle the error appropriately.
-                                                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                                                    let nsError = error as NSError
-                                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                if fetchRequest.wrappedValue.isEmpty {
+                                    VStack {
+                                        Text("No folders created.")
+                                            .padding()
+                                            .opacity(0.3)
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color("SelectionColor"))
+                                    .cornerRadius(12)
+                                } else {
+                                    ForEach(fetchRequest.wrappedValue) { item in
+                                        HStack {
+                                            MenuItemView(title: item.title!, iconName: "folder", active: false)
+                                            
+                                            Button(action: {
+                                                withAnimation {
+                                                    viewContext.delete(item)
+                                                    
+                                                    do {
+                                                        try viewContext.save()
+                                                    } catch {
+                                                        // Replace this implementation with code to handle the error appropriately.
+                                                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                                        let nsError = error as NSError
+                                                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                                                    }
                                                 }
-                                            }
-                                        }, label: {
-                                            Image("bin")
-                                                .resizable()
-                                                .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                                .foregroundColor(Color("DimmedColor"))
-                                        })
-                                        .padding(.horizontal)
+                                            }, label: {
+                                                Image("bin")
+                                                    .resizable()
+                                                    .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                    .foregroundColor(Color("DimmedColor"))
+                                            })
+                                            .padding(.horizontal)
+                                        }
                                     }
                                 }
                             }

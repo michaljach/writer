@@ -86,59 +86,59 @@ struct Editor: View {
             .navigationBarTitle("", displayMode: .inline)
             
             HStack(spacing: 0) {
-                Button(action: {
-                    keyboardAction(type: "bold")
-                }) {
-                    Image("bold")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
-                .padding(.horizontal, 8)
-                
-                Button(action: {
-                    
-                }) {
-                    Image("italic")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
-                .padding(.horizontal, 8)
-                
-                Button(action: {
-                    
-                }) {
-                    Image("strikethrough")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
-                .padding(.horizontal, 8)
-                
-                Button(action: {
-                    
-                }) {
-                    Image("underline")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
-                .padding(.horizontal, 8)
-                
-                Button(action: {
-                    
-                }) {
-                    Image("blockquote")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
+                //                Button(action: {
+                //                    keyboardAction(type: "bold")
+                //                }) {
+                //                    Image("bold")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24, alignment: .center)
+                //                        .foregroundColor(Color("AccentColor"))
+                //                        .padding(.vertical)
+                //                }
+                //                .padding(.horizontal, 8)
+                //
+                //                Button(action: {
+                //
+                //                }) {
+                //                    Image("italic")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24, alignment: .center)
+                //                        .foregroundColor(Color("AccentColor"))
+                //                        .padding(.vertical)
+                //                }
+                //                .padding(.horizontal, 8)
+                //
+                //                Button(action: {
+                //
+                //                }) {
+                //                    Image("strikethrough")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24, alignment: .center)
+                //                        .foregroundColor(Color("AccentColor"))
+                //                        .padding(.vertical)
+                //                }
+                //                .padding(.horizontal, 8)
+                //
+                //                Button(action: {
+                //
+                //                }) {
+                //                    Image("underline")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24, alignment: .center)
+                //                        .foregroundColor(Color("AccentColor"))
+                //                        .padding(.vertical)
+                //                }
+                //                .padding(.horizontal, 8)
+                //
+                //                Button(action: {
+                //
+                //                }) {
+                //                    Image("blockquote")
+                //                        .resizable()
+                //                        .frame(width: 24, height: 24, alignment: .center)
+                //                        .foregroundColor(Color("AccentColor"))
+                //                        .padding(.vertical)
+                //                }
                 
                 Spacer()
                 
@@ -175,40 +175,53 @@ struct Editor: View {
     
     var trailingBarItems: some View {
         HStack(spacing: 16) {
-            Button(action: {
-                isPresented.toggle()
-            }) {
-                Image("folder")
-                    .resizable()
-                    .frame(width: 24, height: 24, alignment: .center)
-                    .foregroundColor(Color("AccentColor"))
-                    .padding(.vertical)
-            }
-            Button(action: {
-                if let userDefaults = UserDefaults(suiteName: "group.com.mj.Writer") {
-                    userDefaults.set(item?.content as AnyObject, forKey: "widgetItem")
-                    userDefaults.set(String((item?.timestamp?.timeIntervalSince1970)!), forKey: "widgetItemId")
-                    userDefaults.synchronize()
-                    WidgetCenter.shared.reloadAllTimelines()
-                    bookmarkIcon.toggle()
+            if item?.isBin ?? false {
+                Button(action: {
+                    item?.isBin = false
+                    try! viewContext.save()
+                }) {
+                    Image("box")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: .center)
+                        .foregroundColor(Color("AccentColor"))
+                        .padding(.vertical)
                 }
-            }) {
-                Image(bookmarkIcon ? "pin_filled" : "pin")
-                    .resizable()
-                    .frame(width: 24, height: 24, alignment: .center)
-                    .foregroundColor(Color("AccentColor"))
-                    .padding(.vertical)
-            }
-            Button(action: {
-                item?.isFavourited.toggle()
-                favouriteIcon.toggle()
-                try! viewContext.save()
-            }) {
-                Image(favouriteIcon ? "heart_filled" : "heart")
-                    .resizable()
-                    .frame(width: 24, height: 24, alignment: .center)
-                    .foregroundColor(Color("AccentColor"))
-                    .padding(.vertical)
+            } else {
+                Button(action: {
+                    isPresented.toggle()
+                }) {
+                    Image("folder")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: .center)
+                        .foregroundColor(Color("AccentColor"))
+                        .padding(.vertical)
+                }
+                Button(action: {
+                    if let userDefaults = UserDefaults(suiteName: "group.com.mj.Writer") {
+                        userDefaults.set(item?.content as AnyObject, forKey: "widgetItem")
+                        userDefaults.set(String((item?.timestamp?.timeIntervalSince1970)!), forKey: "widgetItemId")
+                        userDefaults.synchronize()
+                        WidgetCenter.shared.reloadAllTimelines()
+                        bookmarkIcon.toggle()
+                    }
+                }) {
+                    Image(bookmarkIcon ? "pin_filled" : "pin")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: .center)
+                        .foregroundColor(Color("AccentColor"))
+                        .padding(.vertical)
+                }
+                Button(action: {
+                    item?.isFavourited.toggle()
+                    favouriteIcon.toggle()
+                    try! viewContext.save()
+                }) {
+                    Image(favouriteIcon ? "heart_filled" : "heart")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: .center)
+                        .foregroundColor(Color("AccentColor"))
+                        .padding(.vertical)
+                }
             }
         }
     }

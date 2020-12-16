@@ -91,7 +91,12 @@ struct SettingsView: View {
                                     
                                 }
                                 .padding()
-                                .opacity(0.2)
+                                .background(Color("SelectionColor"))
+                                .onTapGesture {
+                                    if let url = URL(string: "https://writer.kampsite.co") {
+                                        UIApplication.shared.open(url)
+                                    }
+                                }
                             }
                             .background(Color("SelectionColor"))
                             .cornerRadius(12)

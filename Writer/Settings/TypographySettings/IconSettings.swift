@@ -46,6 +46,35 @@ struct IconSettingsView: View {
                                 }
                             }
                             
+                            SettingsNavItemView(title: "Grey", current: {
+                                settings.icon == "grey" ? Image("tick") : Image("")
+                            }) {
+                                
+                            }
+                            .padding()
+                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                            .background(Color("SelectionColor"))
+                            .onTapGesture {
+                                settings.icon = "grey"
+                                UIApplication.shared.setAlternateIconName("icon_grey") { error in
+                                    
+                                }
+                            }
+                            
+                            SettingsNavItemView(title: "Aqua", current: {
+                                settings.icon == "aqua" ? Image("tick") : Image("")
+                            }) {
+                                
+                            }
+                            .padding()
+                            .overlay(Rectangle().frame(width: nil, height: 1, alignment: .bottom).foregroundColor(Color("DividerDarkColor")), alignment: .bottom)
+                            .background(Color("SelectionColor"))
+                            .onTapGesture {
+                                settings.icon = "aqua"
+                                UIApplication.shared.setAlternateIconName("icon_aqua") { error in
+                                    
+                                }
+                            }
                         }
                         .background(Color("SelectionColor"))
                         .cornerRadius(12)

@@ -9,14 +9,16 @@ import SwiftUI
 
 struct MenuItemView: View {
     let title: String
-    let iconName: String
+    let iconName: String?
     let active: Bool
         
     var body: some View {
         HStack {
-            Image(iconName)
+            if let icon = iconName {
+            Image(icon)
                 .resizable()
                 .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            }
             Text(title)
                 .fontWeight(.semibold)
             Spacer()

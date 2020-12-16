@@ -34,6 +34,10 @@ struct MenuView: View {
                     }
                     
                     Section(header: HeaderView(title: "Folders").padding(.bottom)) {
+                        if fetchRequest.wrappedValue.isEmpty {
+                            MenuItemView(title: "No folders created.", iconName: nil, active: false)
+                                .opacity(0.3)
+                        } else {
                         ForEach(fetchRequest.wrappedValue) { (systemMenuItem) in
                             NavigationLink(destination: NotesListView(filter: systemMenuItem.id!)) {
                                 MenuItemView(title: systemMenuItem.title!, iconName: "folder", active: settings.selectedFolder == systemMenuItem.id)
@@ -43,6 +47,7 @@ struct MenuView: View {
                                     settings.selectedFolder = found.id ?? "all"
                                 }
                             })
+                        }
                         }
                     }
                 }
