@@ -10,6 +10,7 @@ import CoreData
 
 struct ListView: View  {
     @EnvironmentObject var settings: UserSettings
+    @EnvironmentObject var storeManager: StoreManager
     
     init() {
         let coloredAppearance = UINavigationBarAppearance()
@@ -24,7 +25,6 @@ struct ListView: View  {
         UINavigationBar.appearance().tintColor = UIColor(Color("AccentColor"))
         
         UITableView.appearance().backgroundColor = UIColor(Color("BackgroundColor"))
-        
     }
     
     var body: some View {

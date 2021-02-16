@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		30230E45256E939A0094A9E8 /* Writer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 306D582F25514D380074CFD5 /* Writer.xcdatamodeld */; };
+		3059BA5E25D5E08E009C4436 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3059BA5D25D5E08E009C4436 /* StoreKit.framework */; };
+		3059BA6425D5E0BB009C4436 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3059BA6325D5E0BB009C4436 /* StoreManager.swift */; };
 		305D2C802580E5D90096731A /* SystemMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D2C7F2580E5D90096731A /* SystemMenuItem.swift */; };
 		305D2C8625810D580096731A /* AddFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D2C8525810D580096731A /* AddFolderView.swift */; };
+		3063CB1825D6A80400F6887F /* GetFullVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063CB1725D6A80400F6887F /* GetFullVersion.swift */; };
 		30665F842555805B001BF753 /* SettingsNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F832555805B001BF753 /* SettingsNavItemView.swift */; };
 		30665F8C2555B318001BF753 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30665F8B2555B318001BF753 /* SettingsItemView.swift */; };
 		30665F962555B775001BF753 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30665F952555B775001BF753 /* WidgetKit.framework */; };
@@ -93,9 +96,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3059BA5D25D5E08E009C4436 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3059BA6325D5E0BB009C4436 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		305D2C7F2580E5D90096731A /* SystemMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMenuItem.swift; sourceTree = "<group>"; };
 		305D2C8525810D580096731A /* AddFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderView.swift; sourceTree = "<group>"; };
 		305D2C9325850BBF0096731A /* Writer_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Writer_v2.xcdatamodel; sourceTree = "<group>"; };
+		3063CB1725D6A80400F6887F /* GetFullVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFullVersion.swift; sourceTree = "<group>"; };
 		30665F832555805B001BF753 /* SettingsNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavItemView.swift; sourceTree = "<group>"; };
 		30665F8B2555B318001BF753 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		30665F942555B775001BF753 /* WriterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WriterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30F377712551ADF0003FAC4F /* CloudKit.framework in Frameworks */,
+				3059BA5E25D5E08E009C4436 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +221,7 @@
 				30665F832555805B001BF753 /* SettingsNavItemView.swift */,
 				30665F8B2555B318001BF753 /* SettingsItemView.swift */,
 				30F0623A256B0C7400446C6D /* UserSettings.swift */,
+				3063CB1725D6A80400F6887F /* GetFullVersion.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -267,6 +275,7 @@
 				30F37768255195F9003FAC4F /* Writer.entitlements */,
 				306D582825514D380074CFD5 /* Assets.xcassets */,
 				306D582A25514D380074CFD5 /* Preview Content */,
+				3059BA6325D5E0BB009C4436 /* StoreManager.swift */,
 			);
 			path = Writer;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 		30F3776F2551ADF0003FAC4F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3059BA5D25D5E08E009C4436 /* StoreKit.framework */,
 				30F377702551ADF0003FAC4F /* CloudKit.framework */,
 				30665F952555B775001BF753 /* WidgetKit.framework */,
 				30665F972555B775001BF753 /* SwiftUI.framework */,
@@ -551,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DACA3A2589256C00C3CED3 /* MoveToFolder.swift in Sources */,
+				3059BA6425D5E0BB009C4436 /* StoreManager.swift in Sources */,
 				305D2C8625810D580096731A /* AddFolderView.swift in Sources */,
 				30F377862551C7A1003FAC4F /* EditorView.swift in Sources */,
 				306D583125514D380074CFD5 /* Writer.xcdatamodeld in Sources */,
@@ -563,6 +574,7 @@
 				305D2C802580E5D90096731A /* SystemMenuItem.swift in Sources */,
 				30F377982551CAF9003FAC4F /* UIFont.swift in Sources */,
 				306AF69825549DEB00C124FC /* SettingsView.swift in Sources */,
+				3063CB1825D6A80400F6887F /* GetFullVersion.swift in Sources */,
 				306D582525514D360074CFD5 /* WriterApp.swift in Sources */,
 				30B5B02725543DC3009E301F /* MenuToolbarView.swift in Sources */,
 				306AF6A42555659100C124FC /* HeaderView.swift in Sources */,
@@ -624,7 +636,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = WriterWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -633,6 +645,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer.WriterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -648,7 +661,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = WriterWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				INFOPLIST_FILE = WriterWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -657,6 +670,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer.WriterWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -789,7 +803,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -799,6 +813,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -815,7 +830,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Writer/Writer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"Writer/Preview Content\"";
 				DEVELOPMENT_TEAM = A6GVRYGG7C;
 				ENABLE_PREVIEWS = YES;
@@ -825,6 +840,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mj.Writer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

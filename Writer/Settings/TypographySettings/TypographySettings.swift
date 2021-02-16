@@ -70,7 +70,7 @@ struct TypographySettingsView: View {
                     
                     Section(header: HeaderView(title: "Preview")) {
                         VStack(spacing: 0) {
-                            EditorView(text: $text, highlightRules: EditorView.markdown(fontFace: settings.fontFace, fontSize: settings.fontSize), onTextChange: { text in
+                            EditorView(text: $text, isFirstResponder: false, highlightRules: EditorView.markdown(fontFace: settings.fontFace, fontSize: settings.fontSize), onTextChange: { text in
                                 
                             })
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 300, maxHeight: 300, alignment: .topLeading)

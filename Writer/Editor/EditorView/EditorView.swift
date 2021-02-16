@@ -21,20 +21,22 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
     var onEditingChanged: (UITextView) -> Void = { _ in }
     var onCommit: () -> Void = {}
     var onTextChange: (String) -> Void = { _ in }
+    var isFirstResponder: Bool = false
     
     private(set) var color: UIColor? = nil
     private(set) var font: UIFont? = nil
     private(set) var inset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    private(set) var onInit: ((UITextView) -> Void)? = nil
     
     public init(
         text: Binding<String>,
+        isFirstResponder: Bool,
         highlightRules: [HighlightRule],
         onEditingChanged: @escaping (UITextView) -> Void = { _ in },
         onCommit: @escaping () -> Void = {},
         onTextChange: @escaping (String) -> Void = { _ in }
     ) {
         _text = text
+        self.isFirstResponder = isFirstResponder
         self.highlightRules = highlightRules
         self.onEditingChanged = onEditingChanged
         self.onCommit = onCommit
@@ -56,10 +58,6 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         ]
         textView.linkTextAttributes = linkAttributes
         textView.backgroundColor = UIColor(Color("BackgroundColor"))
-        
-        if let onInit = onInit {
-            onInit(textView)
-        }
         
         return textView
     }
@@ -84,11 +82,17 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         uiView.isScrollEnabled = true
         uiView.selectedTextRange = context.coordinator.selectedTextRange
         uiView.backgroundColor = UIColor(Color("BackgroundColor"))
+        
+        if isFirstResponder && !context.coordinator.didBecomeFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.didBecomeFirstResponder = true
+        }
     }
     
     public class Coordinator: NSObject, UITextViewDelegate {
         var parent: EditorView
         var selectedTextRange: UITextRange? = nil
+        var didBecomeFirstResponder = false
         
         init(_ markdownEditorView: EditorView) {
             self.parent = markdownEditorView
@@ -111,7 +115,6 @@ public struct EditorView: UIViewRepresentable, EditorViewProtocol {
         }
         
         public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-            print("cliked")
             return false
         }
     }
@@ -133,12 +136,6 @@ extension EditorView {
     public func defaultInset(_ inset: UIEdgeInsets) -> Self {
         var new = self
         new.inset = inset
-        return new
-    }
-    
-    public func onInit(_ onInit: @escaping (UITextView) -> Void) -> Self {
-        var new = self
-        new.onInit = onInit
         return new
     }
 }

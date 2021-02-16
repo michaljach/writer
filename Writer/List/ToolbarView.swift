@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ToolbarView: View {
+    @State var hasTrialRestriction = false
+    
     var body: some View {
         HStack {
             Spacer()
-            NavigationLink(destination: Editor().navigationBarTitle("", displayMode: .inline)) {
-                Image("add")
-                    .resizable()
-                    .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(Color("AccentColor"))
+            if hasTrialRestriction {
+                NavigationLink(destination: GetFullVersionView().navigationBarTitle("", displayMode: .inline)) {
+                    Image("add")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("AccentColor"))
+                        .opacity(0.4)
+                }
+            } else {
+                NavigationLink(destination: Editor().navigationBarTitle("", displayMode: .inline)) {
+                    Image("add")
+                        .resizable()
+                        .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("AccentColor"))
+                }
             }
         }
         .padding()

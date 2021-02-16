@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuToolbarView: View {
+    @EnvironmentObject var storeManager: StoreManager
     @EnvironmentObject var settings: UserSettings
     @State var showSettings = false
     @State var showFolders = false
@@ -62,8 +63,8 @@ struct MenuToolbarView: View {
     }
 }
 
-struct MenuToolbarView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuToolbarView()
-    }
-}
+//struct MenuToolbarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MenuToolbarView()
+//    }
+//}

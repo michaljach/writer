@@ -14,7 +14,6 @@ struct Editor: View {
     
     @State private var text: String = "# "
     @State var item: Item?
-    @State private var textView: UITextView?
     @State private var favouriteIcon = false
     @State private var bookmarkIcon = false
     @State private var isPresented = false
@@ -24,7 +23,7 @@ struct Editor: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            EditorView(text: $text, highlightRules: EditorView.markdown(fontFace: settings.fontFace, fontSize: settings.fontSize), onTextChange: { text in
+            EditorView(text: $text, isFirstResponder: item == nil, highlightRules: EditorView.markdown(fontFace: settings.fontFace, fontSize: settings.fontSize), onTextChange: { text in
                 viewContext.performAndWait {
                     if let item = item {
                         let timestamp = Date()
@@ -55,15 +54,8 @@ struct Editor: View {
                 }
             })
             .defaultInset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
-            .onInit { textView in
-                if item == nil {
-                    self.textView = textView
-                    textView.becomeFirstResponder()
-                    textView.backgroundColor = UIColor(Color("BackgroundColor"))
-                    textView.autocapitalizationType = .allCharacters
-                }
-            }
             .onAppear {
+                
                 if let content = item?.content {
                     self.text = content
                     if let item = item {
@@ -80,6 +72,7 @@ struct Editor: View {
                 } else {
                     self.text = settings.heading ? "# " : ""
                     favouriteIcon = false
+                    
                 }
             }
             .navigationBarItems(trailing: trailingBarItems)
@@ -151,7 +144,6 @@ struct Editor: View {
                         .foregroundColor(Color("AccentColor"))
                         .padding(.vertical)
                 }
-                
             }
             .padding(.horizontal)
             .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all))
@@ -166,8 +158,7 @@ struct Editor: View {
         case "bold":
             return
         case "hideKeyboard":
-            textView?.resignFirstResponder()
-            textView?.endEditing(true)
+            UIApplication.shared.endEditing()
         default:
             return
         }

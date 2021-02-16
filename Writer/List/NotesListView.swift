@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotesListView: View {
+    @EnvironmentObject var storeManager: StoreManager
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var settings: UserSettings
     
@@ -59,8 +60,9 @@ struct NotesListView: View {
             .background(Color("BackgroundColor"))
             .animation(.default)
             
-            ToolbarView()
+            ToolbarView(hasTrialRestriction: !UserDefaults.standard.bool(forKey: "com.mj.Writer.FullVersionOneTime") && fetchRequest.wrappedValue.count > 4)
                 .overlay(Rectangle().frame(width: nil, height: 1, alignment: .top).foregroundColor(Color("DividerColor")), alignment: .top)
+            
         }
         .padding(0)
         .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all))

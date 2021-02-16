@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
+    @EnvironmentObject var storeManager: StoreManager
     @EnvironmentObject var settings: UserSettings
     
     var menuItems = [
@@ -61,9 +62,9 @@ struct MenuView: View {
     }
 }
 
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuView()
-            .environmentObject(UserSettings())
-    }
-}
+//struct MenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MenuView()
+//            .environmentObject(UserSettings())
+//    }
+//}
