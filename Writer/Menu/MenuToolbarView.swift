@@ -34,6 +34,7 @@ struct MenuToolbarView: View {
                     .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .foregroundColor(Color("DimmedColor"))
             })
+            
             Spacer()
             Button(action: {
                 self.activeSheet = .b
@@ -63,8 +64,8 @@ struct MenuToolbarView: View {
     }
 }
 
-//struct MenuToolbarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MenuToolbarView()
-//    }
-//}
+struct MenuToolbarView_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuToolbarView()
+    }
+}
