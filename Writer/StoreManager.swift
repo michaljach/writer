@@ -63,6 +63,13 @@ class StoreManager: NSObject, ObservableObject, SKProductsRequestDelegate, SKPay
         }
     }
     
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        UserDefaults.standard.setValue(true, forKey: "com.mj.Writer.FullVersionOneTime")
+        if let restoredCallback = self.restoredCallback {
+            restoredCallback()
+        }
+    }
+    
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             switch transaction.transactionState {

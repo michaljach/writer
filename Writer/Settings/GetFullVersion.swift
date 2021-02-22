@@ -25,16 +25,18 @@ struct GetFullVersionView: View {
                                     spinnerVisible = false
                                 })
                             }, label: {
-                                Text("Get full version")
-                                    .fontWeight(.medium)
-                                Spacer()
-                                Spacer()
-                                ProgressView()
-                                    .opacity(spinnerVisible ? 1 : 0)
-                                Spacer()
-                                Text("One-time payment")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color.gray)
+                                HStack {
+                                    Text("Get full version")
+                                        .fontWeight(.medium)
+                                    Spacer()
+                                    HStack(spacing: 4) {
+                                        ProgressView()
+                                            .opacity(spinnerVisible ? 1 : 0)
+                                        Text("One-time payment")
+                                            .fontWeight(.medium)
+                                            .foregroundColor(Color.gray)
+                                    }
+                                }
                             })
                             .padding()
                         }

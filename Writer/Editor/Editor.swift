@@ -55,7 +55,6 @@ struct Editor: View {
             })
             .defaultInset(UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20))
             .onAppear {
-                
                 if let content = item?.content {
                     self.text = content
                     if let item = item {
@@ -135,15 +134,18 @@ struct Editor: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    keyboardAction(type: "hideKeyboard")
-                }) {
-                    Image("arrow_down")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
+                #if targetEnvironment(macCatalyst)
+                #else
+                    Button(action: {
+                        keyboardAction(type: "hideKeyboard")
+                    }) {
+                        Image("arrow_down")
+                            .resizable()
+                            .frame(width: 24, height: 24, alignment: .center)
+                            .foregroundColor(Color("AccentColor"))
+                            .padding(.vertical)
+                    }
+                #endif
             }
             .padding(.horizontal)
             .background(Color("BackgroundColor").edgesIgnoringSafeArea(.all))
@@ -187,21 +189,24 @@ struct Editor: View {
                         .foregroundColor(Color("AccentColor"))
                         .padding(.vertical)
                 }
-                Button(action: {
-                    if let userDefaults = UserDefaults(suiteName: "group.com.mj.Writer") {
-                        userDefaults.set(item?.content as AnyObject, forKey: "widgetItem")
-                        userDefaults.set(String((item?.timestamp?.timeIntervalSince1970)!), forKey: "widgetItemId")
-                        userDefaults.synchronize()
-                        WidgetCenter.shared.reloadAllTimelines()
-                        bookmarkIcon.toggle()
+                #if targetEnvironment(macCatalyst)
+                #else
+                    Button(action: {
+                        if let userDefaults = UserDefaults(suiteName: "group.com.mj.Writer") {
+                            userDefaults.set(item?.content as AnyObject, forKey: "widgetItem")
+                            userDefaults.set(String((item?.timestamp?.timeIntervalSince1970)!), forKey: "widgetItemId")
+                            userDefaults.synchronize()
+                            WidgetCenter.shared.reloadAllTimelines()
+                            bookmarkIcon.toggle()
+                        }
+                    }) {
+                        Image(bookmarkIcon ? "pin_filled" : "pin")
+                            .resizable()
+                            .frame(width: 24, height: 24, alignment: .center)
+                            .foregroundColor(Color("AccentColor"))
+                            .padding(.vertical)
                     }
-                }) {
-                    Image(bookmarkIcon ? "pin_filled" : "pin")
-                        .resizable()
-                        .frame(width: 24, height: 24, alignment: .center)
-                        .foregroundColor(Color("AccentColor"))
-                        .padding(.vertical)
-                }
+                #endif
                 Button(action: {
                     item?.isFavourited.toggle()
                     favouriteIcon.toggle()
